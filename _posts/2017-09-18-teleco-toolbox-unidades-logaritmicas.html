@@ -1,0 +1,98 @@
+---
+layout: post
+title: Teleco Toolbox | Unidades logarítmicas
+date: 2017-09-18 20:44:03.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Teleco Toolbox
+tags: []
+meta:
+  _edit_last: '31203507'
+  geo_public: '0'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/909880742842437633";}}
+  _publicize_job_id: '9423355137'
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _wpas_skip_13558039: '1'
+  _wpas_skip_1128139: '1'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2017/09/18/teleco-toolbox-unidades-logaritmicas/"
+---
+<p><em>¡Hola! Aquí traigo algunas herramientas fundamentales para sobrevivir a una carrera de teleco. Intentaré hacer las explicaciones lo más interesantes y entendibles posible, para alguien con -3 neuronas como un servidor. ¡Que aproveche!</em></p>
+<p>Ok. <strong>Unidades logarítmicas.</strong> Me voy a explayar un poco en explicarlo, por lo que quiera revisar las fórmulas dejaré lo fundamental como chuletario al final.</p>
+<p><!--more--></p>
+<p><em> ¿De qué va esto?</em></p>
+<p>El quid de la cuestión principal es que es un tipo de unidades que presentan una relación <strong>no lineal</strong> con el espacio de números naturales. Es decir: la relación entre un número en unidades naturales y un número en logarítmicas no sigue una linea recta, si no que hace una exponencial.</p>
+<p><em>¿Para qué me sirve esto?</em></p>
+<p>Para empezar, tenemos la <strong>función básica decibelio, o dB</strong>, que trabaja sobre <strong>magnitudes sin unidad</strong>:</p>
+<p>$latex dB =10 log_{10}(x)$</p>
+<p>donde x no tiene unidad.</p>
+<p><em>¡Un momento, senpai! ¿De donde saco yo una <strong>magnitud sin unidad</strong>?</em></p>
+<p>No te preocupes pequeño lacayo, te recuerdo algo que usas mucho y que<strong> no tiene unidades: ¡ratios y coeficientes!</strong></p>
+<p>Hay uno que nos representa a todos los que hemos pasado por asignaturas de modulación de señal: <strong>la ganancia de un amplificador</strong> (ratio entre la potencia de salida y la potencia de entrada)</p>
+<p>$latex P_{out}/P_{in}=G$</p>
+<p>Y habréis oido por ahí algo del estilo:</p>
+<p>"... la<strong> potencia</strong> de salida es 5dbW... "</p>
+<p>o</p>
+<p>" ...la <strong>potencia</strong> de entrada es 5 dBm..."</p>
+<p><em>¡¡¿Pero si la <strong>potencia tiene unidades</strong>?!!</em></p>
+<p>Yep, pero fíjate que está expresado en <strong>dBW o dbm</strong>.</p>
+<p><em>:thinking_face:</em></p>
+<p>No te preocupes, ahora te lo explico todo:</p>
+<p>La explicación es que si tenemos una potencia P y la dividimos por 1 W, tenemos una magnitud sin unidad que expresa el valor de P en relación a 1 W de potencia. Voilá!</p>
+<p>Por ejemplo:</p>
+<p>$latex P = 2500mW,  \frac{P}{1W} = 2.5$</p>
+<p>significando esto que P es 2.5 más grande que 1 W.</p>
+<p>Ya que P no tiene unidades, podemos expresar este valor en decibelios!</p>
+<p>$latex P(dBW) =  10log_{10}(\frac{P}{1W})$</p>
+<p>$latex P(dBm) = 10log_{10}(\frac{P}{0.001W})$</p>
+<p>¡ejemplos!</p>
+<p>P = 100 W = +20 dBW = +50dbm</p>
+<p>P = 1 mW = -30dBW = 0 dBm</p>
+<p>Vamos a hablar de los valores clásicos de dB.</p>
+<p>Empezando por $latex 10 log_{10} (10) = 10 dB$, podemos ver que <strong>algo que dé 10 de ratio de ganancia va a dar 10 dBs.</strong></p>
+<p>¿Entonces,<strong> si hay 20dBs hay 20 de ratio de ganancia?</strong></p>
+<p><strong> ¡Incorrecto!</strong> Recuerda los palos que te metieron en Cálculo 1 con los logaritmos:</p>
+<p>$latex 10 log_{10}[10^{n}] = n 10 log_{10}[10] = 10n$</p>
+<p>Teniendo en cuenta que $latex G = 10^{n} \leftrightarrow G(dB) = 10n$</p>
+<p>En nuestro caso, $latex G = 100 = 10^{2} (n=2)$, por lo que con 20dB,  ¡indicamos un ratio de ganancia de 100 en vez de 20! ¿Recuerdas cuando te dije que era una equivalencia no lineal? Aquí tienes por qué.</p>
+<p>Te dejo aquí debajo una tabla con los valores de dBs más populares para saberse:</p>
+<p><img class="size-medium wp-image-1812 aligncenter" src="{{ site.baseurl }}/assets/2017/09/captu3re.png?w=300" alt="" width="300" height="238" /></p>
+<p>(también conviene saber que $latex 10log_{10}[1] = 0dB, 10log_{10}[0] = -\infty dB$)</p>
+<p>Como ya os estoy adelantando en la imagen, vamos a mirar <strong>cómo operar con estos decibelios</strong>:</p>
+<p>$latex 10log_{10}[x*y] = 10log_{10}[x]+10log_{10}[y]$ y $latex 10log_{10}[x/y] = 10log_{10}[x]- 10log_{10}[y] $</p>
+<p>Por lo tanto, $latex P_{out} = G*P_{in}$ se escribe en dBs tal que:</p>
+<p>$latex P_{out}/1mW =G*P_{in}/1mW \rightarrow \\ 10log_{10}[P_{out}/1mW ]=10log_{10}[G*P_{in}/1mW] \rightarrow \\10log_{10}[P_{out}/1mW ]=10log_{10}[G]+10log_{10}[P_{in}/1mW] $</p>
+<p>Por lo tanto,</p>
+<p>$latex P_{out}(dBm) = G(dB) + P_{out}(dBm)$</p>
+<p>De la misma manera se puede demostrar que:</p>
+<p>$latex P_{out}(dBW) = G(dB) + P_{out}(dBW)$</p>
+<p>Esto no se debe confundir con esto:</p>
+<p>$latex 10 dBm + 6dBm \neq 16 dBm$</p>
+<p>Los dB se pueden "sumar" entre sí, pero ¡<strong>no puedes sumar 2 magnitudes convertidas a logaritmo en el dominio logarítmico</strong>! (técnicamente sí, pero no tiene ningún sentido matemático, no es la solución que esperas de manera intuitiva)</p>
+<p>Esto es porque $latex 10 log_{10} [x+y] \neq 10 log_{10}[x] + 10 log_{10}[y] = 10 log_{10} [x*y]$</p>
+<p>Para <strong>hacer el cambio, hay que volver a W y después regresar al dominio logarímico</strong>:</p>
+<p>$latex P_{1} = 10 dBm = 10^10/10 mW = 10 mW \, \\y \, P_{2} = 6 dBm = 10^6/10 mW =  4mW \rightarrow \\ P_{T} = P_{1} + P_{2} = 4mW + 10mW = 14mW \rightarrow \\ P_{T}(dBm) = 10 log_{10} (\frac{14mW}{1mW}) = 11.46 dBm \neq 16 dBm$</p>
+<p><strong>Ejemplo práctico:</strong></p>
+<p><img class="size-medium wp-image-1824 aligncenter" src="{{ site.baseurl }}/assets/2017/09/captu3re1.png?w=300" alt="" width="300" height="85" /></p>
+<p>$latex p(1) = 0.25W = 250mW \rightarrow 10 log_{10} [\frac{0.25W}{1W}] = -6,020 dBW \rightarrow 10 log_{10} [\frac{0.25W}{1mW}] = 23,979 dBm \\ G = 13dB, A = 3dB$</p>
+<p>A)</p>
+<p>$latex 10^(13/10)*10^(-3/10) * 0.25W = 2,5W \\ 10^(13/10)*10^(-3/10) * 250mW = 2500 mW$</p>
+<p>B)</p>
+<p>$latex -6dBW + 13dB - 3dB \rightarrow -6dBW + 10dB = 4dBW \rightarrow 10^{4/10} = 2,5W \\ +24dBm + 13dB - 3dB \rightarrow +34 dBm \rightarrow 10^{34/10} = 2500 mW$</p>
+<p><strong>Chuletario</strong></p>
+<p>$latex Q = k log_{b}(K) \rightarrow k log_{b}(\frac{x_2}{x_1}) \rightarrow 10 log_{10}(\frac{P_1}{P_2}) \rightarrow 20 log_{10} (\frac{V_1}{V_2})$</p>
+<p>$latex K = b^{\frac{Q}{k}} \rightarrow 10^{\frac{Q}{10}}$</p>
+<p>$latex 10dB + 100dB = 110 dB, 10 dBm +20 dBm \neq 30 dBm$</p>
+<p>¡Y hasta aquí chicos! Espero que os haya servido un poco, y si no bueno, otra vez será ^^</p>
+<p>&nbsp;</p>

@@ -1,0 +1,159 @@
+---
+layout: post
+title: Terminal 101
+date: 2016-02-07 15:24:00.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- '101'
+- Pro-tips
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '19564844417'
+  _publicize_done_external: a:2:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/696354593630892033";}s:8:"facebook";a:1:{i:13558039;s:36:"https://facebook.com/966944636688427";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _publicize_done_13615677: '1'
+  _wpas_done_13558039: '1'
+  _edit_last: '31203507'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/02/07/ubuntu-3-linea-de-comandos-101/"
+---
+<p>¡Hola! Acabo de terminar el curso de la linea de comandos (command line) de Codecademy, el cual es gratuito y corto por lo que es muy recomendado que lo hagas! <a href="https://www.codecademy.com/es/learn/learn-the-command-line">Te dejo el enlace por aquí.</a></p>
+<p><!--more--></p>
+<p>Entonces, de la que estaba haciendo el curso tomé apunte de todos los comandos que se usan en el curso y me pareció apropiado dejarlos colgados aquí para una revisión posterior. ¡Algunos comandos pueden llegar a resultar extremadamente útiles! Si tienes alguna duda con alguno, antes de preguntarme, te recomiendo que te hagas el curso de Codecademy. Seguramente te lo terminas antes de que puedas ver una película entera del Señor de los Anillos de todas maneras D:</p>
+<p><strong>NAVEGACIÓN</strong></p>
+<ul>
+<li><em>ls</em> "lists" =&gt; lista de archivos en el directorio donde estás</li>
+<li><em>pwd</em> =&gt; "print working directory" - pone el nombre del directorio en el que te encuentras (se llama directorio activo, working directory).</li>
+<li><em>cd</em> =&gt; "change directory" - te cambia al directorio</li>
+</ul>
+<p><em>cd 2015</em> =&gt; "2015" es un argumento<br />
+<em>cd</em> - =&gt; vuelve al anterior<br />
+<em>cd ..</em> =&gt; vuelve al directorio padre<br />
+<em>cd ../../action/</em> =&gt; moverse 2 directorios hacia atrás, y entonces entrar en action/</p>
+<ul>
+<li><em>mkdir</em> =&gt; "make directory" - crear una nueva carpeta</li>
+<li><em>touch keyboard.txt</em> =&gt; crea un archivo llamado keyboard.txt en el directorio activo</li>
+</ul>
+<p><strong>MANIPULACIÓN</strong></p>
+<ul>
+<li><em>Listar - ls</em></li>
+</ul>
+<p>-a =&gt; muestra todo el contenido, incluyendo archivos ocultos y directorios<br />
+-l =&gt; muestra todo el contenido del directorio en un formato largo<br />
+-t =&gt; ordena los archivos y los directorios según su última modificación.</p>
+<p>Cuando hacemos<strong> ls -l</strong> aparece algo como esto:</p>
+<p style="text-align:center;">drwxr-xr-x 5 cc eng 4096<br />
+Jun 24 16:51 action</p>
+<ul>
+<li>drwxr-xr-x -&gt; derechos de acceso</li>
+<li>5 -&gt; número de vínculos físicos (el número de directorios hijos y archivos, incluyéndose a si mismo.)</li>
+<li>cc -&gt; el propietario del archivo</li>
+<li>eng -&gt; el grupo al que le pertenece el archivo.</li>
+<li>4096 -&gt; el tamaño del archivo en bytes.</li>
+<li>Jun 24 16:51 -&gt; fecha y hora de su última modificación</li>
+<li>action -&gt; nombre del archivo/directorio</li>
+<li>¡las puedes mezclar! =&gt; ls -alt, ls -al, ls -lt, etc</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+<li><em>Copiar - cp</em></li>
+</ul>
+<p>1) coge un archivo lleno + uno vacío =&gt; copia los contenidos de uno en otro<br />
+2) coge un archivo + un directorio =&gt; copia el archivo al directorio<br />
+3) coge un conjunto de archivos + un directorio =&gt; copia todos al directorio</p>
+<p>aparte de usar argumentos, podemos usar caracteres como * para seleccionar grupos de archivos. Estos se llaman comodines. por ejemplo:</p>
+<p><em>cp * satire/</em> =&gt; copia todos los archivos en el directorio activo a satire/</p>
+<p><em>cp m*.txt scifi/</em> =&gt; copia todos los archivos que empiezen por m y terminen en .txt y los copia en scifi/</p>
+<ul>
+<li><em>Mover - mv</em></li>
+</ul>
+<p><em>mv superman.txt superhero/</em> =&gt; "move" - mueve un archivo/ un conjunto de archivos a un directorio o renombrar un archivo a otro.</p>
+<ul>
+<li><em>Remover - rm</em></li>
+</ul>
+<p><em>rm waterboy.txt</em> =&gt; "remove" - eleminar un archivo de un directorio.</p>
+<p>argumentos de remove:</p>
+<p>-r =&gt; recursivo: elimina un directorio y lo que tenga dentro.</p>
+<p><strong>REDIRECCIÓN</strong></p>
+<ul>
+<li><em>echo "Hello"</em> =&gt; acepta hello como entrada y devuelve hello como salida</li>
+<li>Standard input -&gt; "stdin" es la información recibida por el teclado o dispositivo de entrada</li>
+<li>Standard Output -&gt; "stdout" es la información que exporta después de que se ejecuta un programa</li>
+<li>Standard Error -&gt; "stderr" es un mensaje de error cuando falla un proceso.</li>
+</ul>
+<p>La redirección redirige stdin, stdout o stderr desde o hacia una localización diferente.</p>
+<p><em>echo "Hello" &gt; hello.txt</em> =&gt; ejecuta el programa y pon su output en un archivo llamado hello.txt</p>
+<ul>
+<li><em>cat hello.txt</em> =&gt; abre un archivo y leelo en la consola</li>
+<li><em>&gt;</em> =&gt; redirige stdout a un archivo<br />
+cat redirige el archivo al terminal</li>
+</ul>
+<p><em>&gt;</em> =&gt; puedes usarlo para poner los contenidos de un archivo A en uno B, y sobreescribe.</p>
+<ul>
+<li><em>&gt;&gt;</em> =&gt; añade los contenidos de un archivo a otro.</li>
+<li><em>&lt;</em>  =&gt; coge el stdin del archivo de la derecha y lo pone en la izquierda.</li>
+<li><em>|</em>  =&gt; es una tubería: coge el stdout del comando de la derecha y lo conduce como stdin en el comando de la izquierda, siendo una "Rediección comando a comando". Pueden ser encadenar varios a la vez.</li>
+<li><em>sort</em> =&gt; coge el stdin y lo ordena alfabéticamente para el stdout.</li>
+<li><em>uniq</em> =&gt; elimina columnas duplicadas, pero sólo en las lineas adyacientes, por lo que vale la pena hacer un sort primero y después un uniq para eliminar todos los duplicados.</li>
+<li><em>grep</em> =&gt; "global regular expression point" - busca por lineas que concuerdan a un patrón y devuelve los resultados.<br />
+por ejemplo, en grep Mount busca "Mount".</li>
+</ul>
+<p>-i hace que no separe entre mayúsculas y minúsculas.</p>
+<p>también sirve para buscar dentro de un directorio.</p>
+<p>-R =&gt; recursive<br />
+-l =&gt; files with matches</p>
+<p><em>grep -r  &gt; Artic</em> =&gt; busca en todos los archivos en un directorio y busca dentro de estos archivos la linea introducida.<br />
+<em>grep -Rl Artic</em> =&gt; enseña solo los archivos en los que se ha encontrado la palabra.</p>
+<ul>
+<li><em>sed</em> =&gt; "stream editor" acepta stdin y lo modifica basándose en una expresión antes de hacer stdout.<br />
+Es similar a busca y replaza.</li>
+</ul>
+<p><em>sed 's/snow/rain' hi.txt</em><br />
+s -&gt; sustitucion (para usar sed para sustituir)<br />
+snow -&gt; el texto a buscar<br />
+rain -&gt; el texto de replazo</p>
+<p><strong>ENTORNO</strong></p>
+<p><em>nano hello.txt</em> =&gt; editor de texto en el terminal</p>
+<ul>
+<li><em>clear</em> =&gt; limpiar lo que hay en pantalla</li>
+</ul>
+<p>el cono pa'rriba es el CTRL</p>
+<p><em>CTRL+O</em> - guarda un archivo "output"<br />
+<em>CTRL+X</em> - sale "exit"<br />
+<em>CTRL-G</em> - ayuda</p>
+<p>Bash (bourse again shell) - programa informático cuya función consiste en interpretar órdenes.</p>
+<ul>
+<li><em>~/.bash_profile</em> -&gt; archivo usado para guardar ajustes de entorno.</li>
+</ul>
+<p><em>~</em> -&gt; directorio home<br />
+<em>.</em> -&gt; archivo oculto</p>
+<ul>
+<li><em>source ~/.bash_profile =&gt;</em> hace que los cambios a bash_profile se activen inmediatamente.</li>
+<li><em>alias pd="pwd" =&gt; </em>te deja crear atajos de teclado para comandos comunes.</li>
+</ul>
+<p><strong>Variables de entorno</strong><strong> </strong></p>
+<ul>
+<li><em>history</em> =&gt; historial de tus acciones en la linea de comandos</li>
+<li><em>export USER="Jane Doe" =&gt; </em>USER se convierte en una variable de entorno, y si se le invoca con $USER sale el valor asignado.</li>
+<li><em>PS1</em> =&gt; la variable que define el estilo de la consola de comandos.</li>
+<li><em>HOME</em> = donde se encuentra home</li>
+<li><em>PATH</em> = es una lista cuyos directorios contienen scipts</li>
+</ul>
+<p>tal que <em>pwd</em> es realmente <em>/bin/pwd</em> y <em>ls =&gt; /bin/ls</em></p>
+<ul>
+<li><em>env</em> =&gt; environment - devuelve una lista de variables de entorno al usuario, como PATH, PWD, PS1 y HOME.</li>
+</ul>
+<p><em>PD: el | se buggea en la consola de comandos de Codecademy, si tienes que escribirlo usa Alt+124</em></p>

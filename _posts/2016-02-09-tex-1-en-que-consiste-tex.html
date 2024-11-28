@@ -1,0 +1,65 @@
+---
+layout: post
+title: TeX 101
+date: 2016-02-09 12:00:27.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- '101'
+- TeX
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '19634256592'
+  _publicize_done_external: a:2:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/697096378166562816";}s:8:"facebook";a:1:{i:13558039;s:36:"https://facebook.com/968064809909743";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _publicize_done_13615677: '1'
+  _wpas_done_13558039: '1'
+  _edit_last: '31203507'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/02/09/tex-1-en-que-consiste-tex/"
+---
+<p>Vale, suponiendo que tienes listo una distribución de TeX con un editor, ¿ya te puedo contar de qué va todo esto? Sencillo: TeX es una herramienta que permite a base de texto puro, hacer prácticamente cualquier símbolo matemático existente una figura, matriz, ¡e incluso puede representar imágenes dentro del propio documento!</p>
+<p><!--more--></p>
+<p>Básicamente funciona de la siguiente manera:</p>
+<ul>
+<li>Nosotros escribimos en un fichero de texto, que se le suele dar una terminación de archivo <em>.tex</em>. Aquí ponemos todo el contenido de nuestro texto: toda la estructura y el diseño de nuestra página.</li>
+<li>Entonces, el programa se encargará de compilar todos los módulos que le hemos ido pidiendo en el fichero tex y los exportará a un <em>.pdf</em>, lo cual permite una lectura bastante agradable.</li>
+</ul>
+<p>Hablemos un poco más a fondo de las características de TeX:</p>
+<ul>
+<li>Es muy <strong>poderoso: </strong>podemos escribir cualquier tipo de cosa en él con cualquier fórmula. Tiene unas reglas propias (como cualquier lenguaje de tipografía que se precie), pero te permite una representación de figuras complicadas de escribir de otra manera (Word, PowerPoint, Matlab, etcetc) de manera eficaz.<img class=" size-full wp-image-758 aligncenter" src="{{ site.baseurl }}/assets/2016/02/captura37.png" alt="Captura.PNG" width="173" height="101" /></li>
+</ul>
+<p>Por ejemplo, si queremos escribir algo tan rimbombante como lo de arriba, simplemente<br />
+hay que escribir</p>
+<p><em>$ A_f = \frac{e^{\infty}}{\sqrt{-n_3}} $</em></p>
+<p>Parece complicado, ¿verdad? Realmente la sintaxis es muy simple, dividida entre funciones como "<em>\frac{num}{den}</em>" donde frac indica el tipo de función (en este caso, indica una fracción) y num y den son los 2 argumentos que pide la función (que son obviamente el numerador y el denominador.)</p>
+<p>Para que veáis un ápice de potencia, podéis crear cosas tan chulas como éstas:</p>
+<p><img class="  wp-image-771 aligncenter" src="{{ site.baseurl }}/assets/2016/02/captura38.png" alt="Captura.PNG" width="205" height="151" /></p>
+<ul>
+<li>Es muy <strong>rápido</strong>: Es una verdad como un templo: escibir sólamente con el teclado es sencillamente más eficiente que con teclado y ratón. No tienes que ocupar una mano en hacer otras acciones, y aunque en otras herramientas también podemos hacer uso de los queridos atajos de teclado, cualquier editor normal de TeX también tiene atajos de teclado (por ejemplo, <strong>la negrita (CTRL+B) </strong>sería <em>\textbf{la negrita}</em> y <em>la itálica (CTRL+I) sería \textit{la it\'alica})</em></li>
+</ul>
+<p>Si le he podido encontrar alguna pega a TeX, es su dificultad en el español: Todas las tildes (de todos los tipos), las tienes que indicar de forma especial para no confundirse con un comando. Por ejemplo, la ñ se escribe como \~n, lo cual es cuanto menos molesto. <em><strong><a href="https://mas140blog.wordpress.com/2016/02/15/tex-2-como-se-estructura-un-documento-de-tex-y-funcionamiento-basico/" target="_blank">EDIT: NOT ANYMORE </a></strong></em></p>
+<ul>
+<li>Y lo mejor, es <strong>modulable: </strong>como todos sabemos, las grandes cosas en la tecnología siempre son modulables y expandibles (hola iPhone, hola Minecraft), y por supuesto TeX no iba a ser menos. Una de las ventajas de TeXstudio es que te permite descargarte cualquier módulo distinto de lo habitual que hayas decidido entrar, y como es obvio, puedes reescribir tú mismo todas las estructuras de tu fichero incluyendo estilo de letra, fuente, posicionamiento, márgenes o símbolos prácticamente customizados. ¿Que te apetece a los capítulos llamarlos chorizos e invocarlos con un \begin{chorizo}? ¡Adelante! Tienes todo a tu disposición.</li>
+</ul>
+<p>Aquí es donde viene la pregunta del millón: ¿y dónde aprendo yo TeX? Como la mayoría de los casos, Internet tiene la respuesta. Aparte de infinitas guías para aprender los conceptos básicos de TeX mucho más amplias de lo que yo pueda aprender a contar, que soy un simple usuario, así que os recomiendo como biblia "<a href="http://osl.ugr.es/CTAN/info/gentle/gentle.pdf" target="_blank">A Gentle Introduction into TeX</a>", de Miachel Doob, como punto de referencia. ¿Qué no tenéis mucho tiempo, os resulta muy complicado o simplemente no os convence el lenguaje anglosajón? No pasa nada, también tenéis la página de <a href="http://nokyotsu.com/latex/" target="_blank">Nokoyotsu - LaTeX fácil</a>, donde os explica de una manera muy intuitiva y sencilla a dar vuestros primeros pasos en TeX. Además, siempre está<a href="https://www.sharelatex.com/learn/Main_Page" target="_blank"> la documentación de ShareLaTeX</a>, muy básica pero genial para autoaprendizaje.</p>
+<p>¿Y una vez que he ido aprendiendo? Mi mejor baza es que consultéis dudas puntuales también por Internet. No sabéis cuantas dudas he podido resolver a base de buscar en Google. Para daros un ejemplo práctico, quería una caja negra para usar en las definiciones de mis apuntes, tal que así:</p>
+<p><img class="alignnone size-full wp-image-804" src="{{ site.baseurl }}/assets/2016/02/captura39.png" alt="Captura.PNG" width="1408" height="300" /></p>
+<p>y no lo conseguía hacer de ninguna manera. Entonces buscando, llegué a una página de <strong>StackOverflow</strong> (una especie de Yahoo Respuestas inglés centrado en el mundo de la programación INCREÍBLE, no sabéis la cantidad de dudas sobre cualquier cosa tecnológica os pueden resolver ahí) donde un amable señor creó una estructura llamada <em>graybox</em> que se especificaba al comienzo del documento y compiló de maravilla!</p>
+<p>Bueno, después de este artículo tan teórico y técnico o también un poco motivador para que os animéis a usar TeX (si os dedicáis/dedicaréis al ámbito académico será probablemente vuestro pan de cada día, así que mientras antes lo apendáis antes podréis dominarlo y escribir documentos elegantes con soltura).</p>
+<p>Además, tomar apuntes en TeX es completamente poser. Tomar matrices de ecuaciones parciales a mano es tan 2015...</p>
+<p>Bueno, ¡espero que te haya servido el artículo! Si todo va bien, probablemente el siguiente sea explicando las maravillas y bondades de TeXstudio.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

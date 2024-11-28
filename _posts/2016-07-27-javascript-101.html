@@ -1,0 +1,517 @@
+---
+layout: post
+title: Javascript 101
+date: 2016-07-27 18:10:01.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- '101'
+tags: []
+meta:
+  _edit_last: '31203507'
+  geo_public: '0'
+  _wpas_skip_1128139: '1'
+  _post_restored_from: a:3:{s:20:"restored_revision_id";i:1555;s:16:"restored_by_user";i:31203507;s:13:"restored_time";i:1469647694;}
+  _publicize_job_id: '25221505817'
+  _wpas_skip_13558039: '1'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/758382966770769920";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _thumbnail_id: '1662'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/07/27/javascript-101/"
+---
+<p>Siguendo la tradición, ¡continuamos con los 101! Tenemos esta vez el 101 de Javascript, donde el curso lo he realizado también de Codecademy (<a href="https://www.codecademy.com/learn/javascript">aquí tenéis el enlace</a>).</p>
+<p><!--more--></p>
+<p>Vamos a organizarlo en unos puntos principales:</p>
+<h2><a href="#variables"> Variables </a></h2>
+<ul>
+<li><a href="#variables1"> Tipos de dato</a></li>
+</ul>
+<h2><a href="#c"> Lo que se mantiene de C </a></h2>
+<ul>
+<li><a href="#c1"> Asignaciones 101 </a></li>
+<li><a href="#c2"> Sentencias if-else </a></li>
+<li><a href="#c3"> Bucles for </a></li>
+<li><a href="#c4"> Sentencias switch </a></li>
+<li><a href="#c5"> Bucles while y do-while </a></li>
+<li><a href="#c6"> Arrays </a></li>
+</ul>
+<h2><a href="#funciones"> Funciones </a></h2>
+<ul>
+<li><a href="#funciones1"> Sintaxis básica </a></li>
+<li><a href="#funciones2"> Variables dentro de funciones: scope </a></li>
+</ul>
+<h2><a href="#objetos"> Objetos </a></h2>
+<ul>
+<li><a href="#objetos1"> Sintaxis básica y constructores</a></li>
+<li><a href="#objetos2"> Porqué todo es un objeto </a></li>
+<li><a href="#objetos3"> Funciones y métodos </a></li>
+<li><a href="#objetos4"> Prototipos </a></li>
+<li><a href="#objetos5"> Bucle for-in </a></li>
+</ul>
+<h2><a href="#misc"> Miscelánea </a></h2>
+<ul>
+<li><a href="#misc1"> Variables privadas vs variables públicas </a></li>
+<li><a href="#misc2"> prompt, confirm, isNaN... </a></li>
+</ul>
+<p>¡Y empezamos!</p>
+<h3 id="variables">Variables</h3>
+<p>[code language="javascript"]<br />
+var age = 16;<br />
+[/code]</p>
+<p>Así de sencillo. Crear una nueva variable es tan sencillo como poner "var", seguido del <strong>nombre</strong> de la variable, un = y el <strong>valor</strong> de la variable. Hasta aquí todo sencillo, ¿verdad?</p>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+NUEVA VARIABLE:<br />
+var + &quot;nombre de la variable&quot; + = + &quot;valor de la variable&quot; + ;<br />
+[/code]</p>
+<p>Si recordamos, en C debido a su estructura más centrada en el uso de la memoria directamente había que especificar que tipo de dato estábamos guardando y cuál tenía que ser su espacio, además que el valor del tipo de dato tenía que tener sentido (es decir, no podías poner un <b>int</b> y poner después un<strong> double</strong>), que reservaba todo el espacio del tipo de dato en la memoria. Hablaremos más sobre los tipos de dato en el siguiente punto, para ver los que se aplican en Javascript.</p>
+<p>Aquí no hace falta especificar el tipo de dato con el que estamos trabajando, sino que la declaración de variables se hace implícitamente, ya que el propio lenguaje es capaz de definir de que tipo es el <strong>valor</strong> del dato que estamos asignando como variable.</p>
+<p>Además, los que hayáis trabajado C os daréis cuenta de un detalle: vuelven los puntos y coma (<strong>;</strong>) a definir <strong>el separador de línea</strong>, por los que ya estéis acostumbrados a escribir en C no os será un gran problema. Hasta donde tengo entendido no es implícitamente necesario hoy en día, pero mejor hacerlo todo según la convención.</p>
+<h4 id="variables1">Tipos de dato</h4>
+<p>En Javascript se nos presentan unos 5 tipos de dato principales (no son todos, pero son los que trabajaremos en este artículo):</p>
+<ul>
+<li><strong>number</strong> = para números (cualquier tipo de número: natural, entero, real, imaginario...).</li>
+<li><strong>string =</strong> del inglés string, para líneas (de texto).</li>
+<li><strong>array = </strong>una tabla o un array de elementos organizados según un orden concreto.</li>
+<li><strong>boolean </strong>= un booleano, true o false de toda la vida (0 o 1 si sois más masocas).</li>
+<li><strong>object </strong>= un objeto, un elemento único de los lenguajes orientados a objeto como Javascript del que hablaremos más adelante.</li>
+</ul>
+<p>Estos tipos de dato son los que entiende Javascript internamente, y son con los que trabaja. Vamos a usar un operador conocido de C, nuestro querido <strong>typeof</strong> (que si no recordáis, devuelve el tipo de dato en función del valor que le pasemos)</p>
+<p>[code language="javascript"]<br />
+typeof &quot;John&quot;                // Devuelve &quot;string&quot;<br />
+typeof 3.14                  // Devuelve &quot;number&quot;<br />
+typeof false                 // Devuelve &quot;boolean&quot;<br />
+typeof [1,2,3,4]             // Devuelve &quot;object&quot; (no &quot;array&quot;, mira la nota de abajo)<br />
+typeof {name:'John', age:34} // Devuelve &quot;object&quot;<br />
+[/code]</p>
+<p>El operador typeof devuelve "objeto" para un array porque <strong>en JavaScript, los arrays técnicamente son objetos</strong>.</p>
+<p>(El ejemplo de arriba está sacado de<a href="http://www.w3schools.com/js/js_datatypes.asp"> ésta página</a> de W3Schools)</p>
+<h3 id="c">Lo que se mantiene de C</h3>
+<p>Una cosa interesante de haber <s> sufrido</s> aprendido C es que hay muchas estructuras y operadores que se mantienen en el resto de lenguajes más modernos, al ser uno de los veteranos en el arte de la creación de lenguajes de programación. Así, vamos a ir viendo qué no tenemos que aprendernos de nuevo (o mejor dicho, qué deberíamos recordar):</p>
+<h4 id="c1">Asignaciones 101</h4>
+<p>¿Alguien recuerda <a href="https://mas140blog.wordpress.com/2016/07/27/c-101/#once">ésta tabla</a> tan bonita (y tan mal diseñada duh) sobre las asignaciones y las comparaciones en C?</p>
+<p>Bueno, el tema de las asignaciones se mantiene igual. Sigue siendo 1 igual (<strong>=</strong>) para la asignación de variables. Eso sí, a la hora de ver si 2 valores eran iguales, mientras en C usábamos 2 iguales (==), aquí usaremos 3 (===).</p>
+<p><em> <u> Comparaciones en Javascript </u></em></p>
+<p>[code language="javascript"]<br />
+&gt; Mayor que<br />
+&lt; Menor que<br />
+&lt;= Menor o igual que &gt;= Mayor o igual que<br />
+=== Igual que<br />
+!== Distinto que<br />
+[/code]</p>
+<p>Como podemos ver, hay algunos elementos a la hora de comparar que cambian, como igual o distinto que.</p>
+<p>Las comparaciones con varios elementos (conjunciones y disyunciones lógicas, &amp;&amp; y ||) se mantienen igual, y las expresiones sin condición funcionan del mismo modo.</p>
+<h4 id="c2">Sentencias if-else</h4>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+if ( variable + comparación (mayor, menor, igual) + variable a comparar) { //<br />
+	// el código que se ejecuta si es verdad la condición de arriba<br />
+}<br />
+[/code]</p>
+<p><em> <u> Ejemplo: imprimir "¡Hola!" </u></em></p>
+<p>[code language="javascript"]<br />
+var hi = 2;<br />
+if (hi &lt; 3) { // Comprueba si hi (2) es menor que 3, que es TRUE y el if se cumple<br />
+	console.log(&quot;¡Hola!&quot;); // Devuelve &quot;¡Hola!&quot;<br />
+}<br />
+[/code]</p>
+<p>Para que entendáis el ejemplo de arriba, <strong>console.log("valor") </strong>es la manera de escribir en la consola de desarollo en Javascript (un pseudo-equivalente a printf).</p>
+<h4 id="c3">Bucles for</h4>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+for (var i = principio; i &lt; fin; i++) { =&gt; hacer algo<br />
+}<br />
+[/code]</p>
+<p><em> <u> Ejemplo: imprimir en la consola del 1 al 10 </u></em></p>
+<p>[code language="javascript"]<br />
+for (var i = 1; i &lt; 11; i = i + 1){<br />
+	console.log(i);<br />
+}<br />
+[/code]</p>
+<h4 id="c4">Sentencias switch</h4>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+switch (/*una variable*/) {<br />
+    case 'option1':<br />
+        =&gt; Haz una cosa<br />
+        break;<br />
+    case 'option2':<br />
+        =&gt; Haz otra cosa<br />
+        break;<br />
+    case 'option3':<br />
+        =&gt; Haz una tercera cosa<br />
+        break;<br />
+    default:<br />
+        =&gt; Haz algo si la variable no tenía como valor ninguna de las opciones anteriores<br />
+[/code]</p>
+<p><em> <u> Ejemplo: distingue entre notas </u></em></p>
+<p>[code language="javascript"]<br />
+var Grade = 'B';<br />
+switch(Grade)<br />
+{<br />
+   case 'A' : console.log( &quot;Excellent&quot; );<br />
+              break;<br />
+   case 'B' : console.log( &quot;Good&quot; ); // Devuelve &quot;Good&quot; y termina por el break<br />
+              break;<br />
+   case 'C' : console.log( &quot;OK&quot; );<br />
+              break;<br />
+   case 'D' : console.log( &quot;Mmmmm....&quot; );<br />
+              break;<br />
+   case 'F' : console.log( &quot;You must do better than this&quot; );<br />
+              break;<br />
+   default  : console.log( &quot;What is your grade anyway?&quot; );<br />
+              break;<br />
+}<br />
+[/code]</p>
+<p>(Ejemplo adaptado de <a href="http://www.tutorialspoint.com/ansi_c/switch_statement_examples.htm">esta página</a> de TutorialsPoint)</p>
+<h4 id="c5">Bucles while y do-while</h4>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+// while<br />
+while(condición){<br />
+    =&gt; Se aplica el contenido<br />
+}<br />
+// do-while<br />
+do {<br />
+    =&gt; Se aplica el contenido<br />
+} while (condición)</p>
+<p>// Recuerda, while (condición) = while (condición = true)<br />
+[/code]</p>
+<p>Si recordáis bien, la diferencia principal entre el <strong>while</strong> y el <strong>do-while</strong> es que mientras que el while primero comprobaba la condición y si se cumplía, aplicaba el contenido, el do-while primero aplicaba el contenido y antes de repetir el bucle comprobaba la condición, siendo el segundo bastante útil para menús o interfaces de ese estilo.</p>
+<p><em> <u> Ejemplo: while </u></em></p>
+<p>[code language="javascript"]<br />
+var understand = true;</p>
+<p>while(understand === true){<br />
+	console.log(&quot;I'm learning while loops!&quot;);<br />
+	understand = false;<br />
+}<br />
+[/code]</p>
+<p><em> <u> Ejemplo: do-while </u></em></p>
+<p>[code language="javascript"]<br />
+var loopCondition = false;</p>
+<p>do {<br />
+	console.log(&quot;I'm gonna stop looping 'cause my condition is &quot; + loopCondition + &quot;!&quot;);<br />
+} while (loopCondition);<br />
+[/code]</p>
+<p>(Ejemplos sacados de "Introduction to "While" Loops in JS", de Codecademy)</p>
+<h4 id="c6">Arrays</h4>
+<p>Ok, vale, me habéis pillado. Los arrays cambian bastante con respecto a C (no hace falta especificar cuan grande es el array, puede tener cualquier tipo de objeto, se declaran como una variable, pueden tener objetos...) pero oye, la sintaxis es prácticamente la misma, y eso me sirve para justificar que lo puedo decir que es algo heredado de C.</p>
+<p><em> <u> Ejemplo </u></em></p>
+<p>[code language="javascript"]<br />
+var miArray = [&quot;Hola&quot;, &quot;Mundo&quot;]<br />
+miArray[0] =&gt; hola<br />
+// Los strings funcionan como ¡arrays de letras!<br />
+var miNombre = &quot;Ernesto&quot;;<br />
+miNombre[0] =&gt; E<br />
+[/code]</p>
+<p>Además, como existían en C, aquí también existen los arrays multidimensionales, presentados por filas:</p>
+<p>[code language="javascript"]<br />
+var twoDimensional = [[1, 1], [1, 1]];<br />
+[/code]</p>
+<h3 id="funciones">Funciones</h3>
+<p>Para aquellos despitados: una <strong>función</strong> es un elemento que recibe unos argumentos (unas variables) y que suele ejecutar un trozo de código, normalmente dando un valor de respuesta según los argumentos.</p>
+<h4 id="funciones1">Sintaxis básica</h4>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+// 1ª manera (declarándolo como variable) :<br />
+var nombredelafunción = function (argumento1, argumento2) {<br />
+    =&gt; código a ejecutar, se pueden usar los argumentos que se han pasado<br />
+};</p>
+<p>// 2ª manera (declarándolo como función implícita):<br />
+function nombredelafunción (argumento1, argumento2) {<br />
+   =&gt; código a ejecutar, se pueden usar los argumentos que se han pasado<br />
+};<br />
+[/code]</p>
+<p>Nota: ambas maneras de crear una función son válidas y se pueden usar cualquiera de las 2.</p>
+<p><em> <u> Ejemplo: dividir entre 3 </u></em></p>
+<p>[code language="javascript"]<br />
+var divideByThree = function (number) { // declara la función y le da un nombre<br />
+    var val = number / 3; // el código entre los corchetes es la función per-sé<br />
+    console.log(val);<br />
+};<br />
+divideByThree(5); // llamada a la función, devuelve 2<br />
+[/code]</p>
+<p>Una cosa que se puede apeciar es que a la hora de definir una función, el nombre del argumento puede ser cualquiera: x, argumento1, nombre...</p>
+<p>Otro aspecto es que como en C, puede devolver un valor para así poder usarse en el calculo de alguna operación como un área, un peso, etc.</p>
+<p>[code language="javascript"]<br />
+var divideByThree = function (number) {<br />
+    var val = number / 3;<br />
+    return val;<br />
+};<br />
+console.log(divideByThree(5)); // sigue devolviendo 2<br />
+[/code]</p>
+<h4 id="funciones2">Variables dentro de funciones: scope</h4>
+<p>Ya hablamos de este concepto en su momento en C 101, pero sigue igual: si declaramos una variable dentro de una función, solamente será accesible dentro de la función, y por lo tanto, no estará disponible para usarse fuera de ésta. Este es un concepto llamado "variable scope", o alcance de la variable.</p>
+<p><em> <u> Ejemplo: scope </u></em></p>
+<p>[code language="javascript"]<br />
+// code here can not use carName</p>
+<p>function myFunction() {<br />
+var carName = &quot;Volvo&quot;;</p>
+<p>// code here can use carName</p>
+<p>}<br />
+[/code]</p>
+<p>(Ejemplo sacado de nuevo de <a href="http://www.w3schools.com/js/js_scope.asp">W3Schools</a>)</p>
+<h3 id="objetos">Objetos</h3>
+<p>Aquí es donde llegamos a la crema de este lenguaje de progrmaación, los <strong>objetos</strong>. En los fundamentos de la programación orientada a objeto (o POO), se define prácticamente todo como un objeto, excepto <strong>expresiones </strong><strong>primitivas</strong>, que son:</p>
+<ul>
+<li>strings</li>
+<li>números</li>
+<li>true / false</li>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<p>Lo que nos quiere decir esto, que los objetos pueden ser variables dentro de variables: unas variables muy grandes que contienen sub-variables llamadas <strong>llaves</strong> con un <strong>valor</strong>. También a las llaves se les puede llamar "propiedades".</p>
+<h4 id="objetos1">Sintaxis básica y constructores</h4>
+<p>Debido a la naturaleza flexible del lenguaje de programación, hay varias maneras de definir un objeto.</p>
+<p>La <u>primera manera</u> es mediante la<strong> keyword "new"</strong>: creamos una variable que es un nuevo objeto y definimos sus propiedades.</p>
+<p><em> <u> Ejemplo: "new" </u></em></p>
+<p>[code language="javascript"]<br />
+var person = new Object();<br />
+// añadir propiedades al objeto<br />
+person.firstName = &quot;John&quot;;<br />
+person.lastName = &quot;Doe&quot;;<br />
+person.age = 50;<br />
+person.eyeColor = &quot;blue&quot;;<br />
+[/code]</p>
+<p>Fíjate que a cada propiedad se le añade el nombre del objeto (person.age) seguido de un igual y el valor, separado por punto y coma.</p>
+<p>La <u>segunda manera</u> es mediante la<strong> notación literal</strong> del objeto como una variable:</p>
+<p><em> <u> Ejemplo: notación literal </u></em></p>
+<p>[code language="javascript"]<br />
+var person = {<br />
+    firstName:&quot;John&quot;,<br />
+    lastName:&quot;Doe&quot;,<br />
+    age:50,<br />
+    eyeColor:&quot;blue&quot;<br />
+};</p>
+<p>// es lo mismo que la siguiente línea:</p>
+<p>var person = {firstName:&quot;John&quot;, lastName:&quot;Doe&quot;, age:50, eyeColor:&quot;blue&quot;};<br />
+[/code]</p>
+<p>Fíjate que aquí lo puedes poner todo en una sola línea, lo importante es la <strong>dualidad propiedad:valor</strong> del formato separado por una coma.</p>
+<p>La <u>tercera manera</u> es usando un <strong>constructor</strong>, de los cuales son lo siguiente: son <strong>funciones que hacen la labor de objetos</strong>, y por lo tanto tienen unas propiedades y unos valores.</p>
+<p>Si definimos mediante los argumentos de la función las propiedades del objeto, podemos crear un nuevo objeto sin necesidad de repetir toda la sintaxis mediante este "esquemático" que nos permite hacer Javascript.</p>
+<p>Una vez hecho el constructor, se usa la keyword "new" para definir el tipo de dato nuevo: un objeto creado a partir de un constructor.</p>
+<p>Además aparece aquí una keyword nueva: el <strong>this</strong>, que es el objeto al que pertenece el código.</p>
+<p><a href="http://www.w3schools.com/js/js_object_definition.asp">W3Schools </a>tiene una explicación bastante buena que traduciré a continuación:</p>
+<ul>
+<li>El valor de this en una función es el objeto al que pertenece la función.</li>
+<li>El valor de this en un objeto es el objeto.</li>
+<li>El keyword this en un constructor de objetos no tiene valor, sino que es un sustituyente del nuevo objeto (equivalente al argumento1, argumento2 cuando creamos funciones)</li>
+<li>El valor de this será el nuevo objeto cuando el constructor se use para crear un objeto</li>
+</ul>
+<p>Y recuerda, this es una keyword, como new, no una variable, y por lo tanto no puedes cambiar su valor.</p>
+<p><em> <u> Ejemplo: constructor </u></em></p>
+<p>[code language="javascript"]<br />
+function person(first, last, age, eye) { // Creamos el constructor<br />
+    this.firstName = first; // Asignamos sus propiedades<br />
+    this.lastName = last;<br />
+    this.age = age;<br />
+    this.eyeColor = eye;<br />
+}<br />
+var myFather = new person(&quot;John&quot;, &quot;Doe&quot;, 50, &quot;blue&quot;); // Creamos el objeto nuevo<br />
+var myMother = new person(&quot;Sally&quot;, &quot;Rally&quot;, 48, &quot;green&quot;);<br />
+[/code]</p>
+<p>¿Cómo accedemos a las propiedades del objeto?</p>
+<p>Pues tenemos 2 maneras, por la notación por punto ("dot notation"), o por la notación por corchetes ("bracket notation"):</p>
+<p>[code language="javascript"]<br />
+ObjectName.PropertyName // dot notation<br />
+ObjectName[&quot;PropertyName&quot;] // bracket notation<br />
+[/code]</p>
+<p>¿Podemos hacer que variables nuevas tomen valores de objetos?</p>
+<p>¡Claro!</p>
+<p>[code language="javascript"]<br />
+var name1 = bob.name;<br />
+var age1 = bob.age;<br />
+[/code]</p>
+<h4 id="objetos2">Por qué todo es un objeto</h4>
+<p>Vamos a ver un ejemplo bastante curioso encontrado, como de custumbre, en la página de <a href="http://www.w3schools.com/js/js_object_definition.asp">W3Shools</a>.</p>
+<p>[code language="javascript"]<br />
+var x1 = new Object();    // A new Object object<br />
+var x2 = new String();    // A new String object<br />
+var x3 = new Number();    // A new Number object<br />
+var x4 = new Boolean()    // A new Boolean object<br />
+var x5 = new Array();     // A new Array object<br />
+var x6 = new RegExp();    // A new RegExp object<br />
+var x7 = new Function();  // A new Function object<br />
+var x8 = new Date();      // A new Date object<br />
+[/code]</p>
+<p>Como podemos ver, mediante el uso de un constructor podemos construir incluso expresiones primitivas como String, Number y Boolean.</p>
+<p>Realmente los valores primitivos (es decir, var número = 3) es mucho mejor, ya que se ejeuta mucho más rápido.</p>
+<p>Y no hay necesidad de ninguno de los otros elementos:</p>
+<ul>
+<li>¿Quieres un array?: créalo a base de [].</li>
+<li>¿Quieres una función?: créalo a base de function () {}.</li>
+<li>¿Quieres un objeto?: creálo a base de {}.</li>
+</ul>
+<p>[code language="javascript"]<br />
+var x1 = {};            // new object<br />
+var x2 = &quot;&quot;;            // new primitive string<br />
+var x3 = 0;             // new primitive number<br />
+var x4 = false;         // new primitive boolean<br />
+var x5 = [];            // new array object<br />
+var x6 = function(){};  // new function object<br />
+[/code]</p>
+<h4 id="objetos3">Funciones y métodos</h4>
+<p>Ya hemos visto antes cómo podíamos llamar una función:</p>
+<p>[code language="javascript"]<br />
+divideByThree(5);<br />
+[/code]</p>
+<p>Pero tenemos que ver que aparte de las funciones, en JavaScript existe un nuevo tipo de función: los <strong>métodos</strong>.</p>
+<p>Un método es una<strong> función que está ligada a un objeto</strong>. ¿Recordáis cuando para llamar a strcmp teníamos en C que añadir string.h? <strong>C también tiene su propia biblioteca de "metodos" o funciones elementales</strong> que ayudan a la programación.</p>
+<p>Entonces, los métodos llegan con el propósito de hacer esta misma función. Sin embargo, al ser funciones ligadas a objetos, cuando hagamos nuestros objetos <strong>podemos añadir</strong> también unas propiedades que sean <strong>funciones</strong>, y que se convertirán entonces en <strong>métodos del objeto</strong> en cuestión.</p>
+<p>Veamos unos cuantos ejemplos:</p>
+<p>[code language="javascript"]<br />
+var square = new Object();<br />
+square.sideLength = 6;<br />
+square.calcPerimeter = function() { // ej. de método<br />
+  return this.sideLength * 4;<br />
+};<br />
+square.calcArea = function(){ // ej. de método<br />
+    return this.sideLength * this.sideLength;<br />
+}</p>
+<p>console.log(square.calcPerimeter); // devuelve 24<br />
+console.log(square.calcArea); // devuelve 36<br />
+[/code]</p>
+<p>Podemos ver que la sintaxis es la siguiente:</p>
+<p>[code language="javascript"]<br />
+=&gt; creamos un objeto<br />
+=&gt; una de las propiedades del objeto la definimos como una función<br />
+=&gt; llamamos al método de la siguiente manera: objeto.metodo(argumentos)<br />
+[/code]</p>
+<p>¡Sin quererlo ya hemos visto muchos métodos! Vamos a hablar de los métodos que ya hemos visto antes, y de algunos interesantes:</p>
+<ul>
+<li>console<strong>.log</strong> (arg)</li>
+</ul>
+<p>En efecto chicos, la propia consola de desarollo <strong>es un objeto</strong>, el cual tiene unos métodos especiales. Uno bastante útil es el <strong>log</strong>, que permite exportar el argumento (ya sea una variable o el resultado de una función).</p>
+<ul>
+<li>string.<strong>length </strong>()</li>
+</ul>
+<p>Sirve como os podréis imaginar, para medir la longitud de cualquier string ¡o de cualquier array! (Recordad que los strings son arrays de letras...)</p>
+<ul>
+<li>Math.<strong>random </strong>()</li>
+</ul>
+<p>Existe un objeto en JavaScript llamado Math (algún veterano que haya usado math.h que levante la mano), y que sirve para realizar calculos varios relacionados con las matemáticas. En este por ejemplo nos encuentra un número real aleatorio entre 0 y 1.</p>
+<p><em> <u> Número entre 0 y 5 sin decimales </u></em></p>
+<p>No me voy a molestar en explicarlo mal, y voy a dejar literal esta buena explicación sacada de codecademy:</p>
+<p><em>Math.floor(Math.random() * 5 + 1);</em><br />
+<em> First we use Math.random() to create a random number from 0 up to 1. For example, 0.5</em><br />
+<em> Then we multiply by 5 to make the random number from 0 up to 5. For example, 0.5 * 5 = 2.5</em><br />
+<em> Next we use Math.floor() to round down to a whole number. For example, Math.floor( 2.5 ) = 2</em><br />
+<em> Finally we add 1 to change the range from between 0 and 4 to between 1 and 5 (up to and including 5)</em></p>
+<p><em>Math.floor(Math.random() * 2) =&gt; número que es 1 o 0 (= true o false)</em><br />
+<em> Math.floor(Math.random() * 5 + 1) =&gt; número que es (1,2,3,4,5)</em></p>
+<ul>
+<li>Math.<strong>floor </strong>(arg)</li>
+</ul>
+<p>Como podéis haber supuesto antes, <strong>quita los decimales</strong> del número que pongamos como argumento.</p>
+<ul>
+<li>array.<strong>push</strong> (arg)</li>
+</ul>
+<p>Una función bastante útil en mi opinión, sirve para coger una variable nueva y ponerla al final de un array ya existente. <strong>No es necesario especificar un número</strong>, JavaScript solito llegará al final de la tabla y pondrá el nuevo elemento ahí.</p>
+<ul>
+<li>string.<strong>toUpperCase </strong>(arg) y string.<strong>toLowerCase</strong> (arg)</li>
+</ul>
+<p>Como habréis podido adivinar, la primera sirve para poner todo el texto de un string en <strong>MAYÚSCULAS</strong> y la otra para poner todo en <strong>minúsculas</strong>.</p>
+<p>-</p>
+<p>Hay muchos más, pero nos quedaremos con estos.</p>
+<h4 id="objetos4">Prototipos</h4>
+<p>En Javascript es posible hacer una jerarquía de objetos. Es más, <strong>todos los objetos que creamos</strong> mediante el constructor de objetos <strong>se crean a partir de un objeto llamado Object</strong> que tiene todos estos métodos y propiedades predeterminadas. ¿Cómo creamos esta jerarquía entonces? Con los prototipos.</p>
+<p>El primer ejemplo nos sirve para mostrar cómo aunque no esté incluido en la definición del objeto, <strong>podemos añadir un método al objeto "on the fly"</strong>, en el momento, y a partir de ese momento ese objeto <strong>y todos los objetos</strong> que creeemos de ese tipo <strong>tendrán esa propiedad</strong>.</p>
+<p>[code language="javascript"]<br />
+function Dog (breed) {<br />
+  this.breed = breed;<br />
+};</p>
+<p>// here we make buddy and teach him how to bark<br />
+var buddy = new Dog(&quot;golden Retriever&quot;);<br />
+Dog.prototype.bark = function() {<br />
+  console.log(&quot;Woof&quot;);<br />
+};<br />
+buddy.bark();</p>
+<p>// here we make snoopy<br />
+var snoopy = new Dog(&quot;Beagle&quot;);<br />
+/// this time it works!<br />
+snoopy.bark();<br />
+[/code]</p>
+<p>El segundo ejemplo nos enseña que<strong> podemos usar un constructor ya hecho como prototipo</strong>, y el nuevo objeto adquiere todas las <strong>propiedades del constructor</strong>:</p>
+<p>[code language="javascript"]</p>
+<p>Penguin.prototype = new Animal(); // adquiere todas las propiedades de Animal</p>
+<p>[/code]</p>
+<h4 id="objetos5">Bucle for-in</h4>
+<p>Hay un nuevo bucle relacionado con los objetos, por eso no lo habíamos visto en C. Se llama <strong>bucle for-in,</strong> y permite hacer un barrido o un <strong>parseo de todas las propiedades de un objeto.</strong><br />
+Realmente se <strong>parece más a un while que a un for</strong>: mientras haya propiedades de un objeto, corre el código y vete a la siguiente propiedad.</p>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="javascript"]<br />
+for (var &quot;propiedad&quot; in &quot;objeto&quot;) {<br />
+    =&gt; código<br />
+};<br />
+[/code]</p>
+<p><em> <u> Ejemplo: imprimir las propiedades de un objeto </u></em></p>
+<p>[code language="javascript"]<br />
+for (var prop in nyc) {<br />
+    console.log(prop)<br />
+};<br />
+[/code]</p>
+<p><em> <u> Ejemplo: imprimir el valor de las propiedades de un objeto </u></em></p>
+<p>[code language="javascript"]<br />
+for (var prop in nyc) {<br />
+    console.log(nyc[prop]);<br />
+}<br />
+[/code]</p>
+<h3 id="misc">Miscelánea</h3>
+<p>Aquí hablaré de algunas cosas que no he sabido categorizar en ninguno de los puntos anteriores pero que pueden ser de utilidad.</p>
+<h4 id="misc1">Variables públicas vs variables privadas</h4>
+<p>A la hora de definir un objeto, si hacemos que en vez de this definimos una variable con var, esa variable será privada: es decir, <strong>no se podrá acceder desde fuera de la propia función</strong> (excepto que se haga alguna otra función para exportarla con un return o algo así).</p>
+<p><em> <u> Ejemplo</u></em></p>
+<p>[code language="javascript"]<br />
+function Person(first,last,age) {<br />
+   this.firstname = first;<br />
+   this.lastname = last;<br />
+   this.age = age;<br />
+   var bankBalance = 7500;<br />
+}</p>
+<p>// create your Person<br />
+var john = new Person (&quot;John&quot;, &quot;Doe&quot;, 54);</p>
+<p>// try to print his bankBalance<br />
+console.log(john.bankBalance) // devuelve &quot;undefined&quot;, no sabe el valor.<br />
+[/code]</p>
+<p>Con pequeñas <strong>modificaciones</strong> al código podemos acceder a los valores de las variables privadas:</p>
+<p>[code language="javascript"]<br />
+function Person(first,last,age) {<br />
+   this.firstname = first;<br />
+   this.lastname = last;<br />
+   this.age = age;<br />
+   var bankBalance = 7500;</p>
+<p>   this.getBalance = function() {<br />
+      return bankBalance;</p>
+<p>   };<br />
+}</p>
+<p>var john = new Person('John','Smith',30);<br />
+console.log(john.bankBalance); // devuelve &quot;undefined&quot;</p>
+<p>// create a new variable myBalance that calls getBalance()<br />
+var myBalance = john.getBalance();<br />
+console.log(myBalance); // devuelve &quot;7500&quot;<br />
+[/code]</p>
+<h4 id="misc2">prompt, confirm, isNaN...</h4>
+<p>Estas funciones de Object son un tanto particulares, y las vamos a definir aquí:</p>
+<ul>
+<li><strong>prompt</strong> (string)</li>
+</ul>
+<p>Hace que te salga un popout en el navegador que pone el texto que le hayas pasado por argumento y te permite introducir un texto. Prompt enconces devuelve como resultado el texto que hayas escrito.</p>
+<ul>
+<li><strong>confirm</strong> (string)</li>
+</ul>
+<p>Igual que prompt pero en vez de permitirte introducir un texto solamente te deja poner confirmar o rechazar. Devuelve un boolean true o false, dependiendo del caso.</p>
+<ul>
+<li>isNaN (object)</li>
+</ul>
+<p>Le introduces un elemento cualquiera y te dice si su valor es un número o no. Si no es un número, devuelve true, y si lo es devuelve false.</p>

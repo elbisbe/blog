@@ -1,0 +1,42 @@
+---
+layout: post
+title: Xilinx &lt;/3 Windows 8-10 - Instalación
+date: 2016-02-10 20:59:27.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Circuitos
+- Instalación
+tags: []
+meta:
+  _edit_last: '31203507'
+  _publicize_done_external: a:2:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/697525320853753856";}s:8:"facebook";a:1:{i:13558039;s:36:"https://facebook.com/968634103186147";}}
+  geo_public: '0'
+  _publicize_job_id: '19676362321'
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _publicize_done_13615677: '1'
+  _wpas_done_13558039: '1'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/02/10/circuitos-1-1-como-hacer-que-xilinx-no-explote-en-windows-8-10/"
+---
+<p>¡Hola! Si os habéis fijado, Xilinx tiene la curiosa manía de crashear cada vez que intentas crear un nuevo proyecto en Windows 8-10. Pero ¡no temáis!, Internet (<a href="https://forums.xilinx.com/t5/Installation-and-Licensing/Windows-8/m-p/321185#M4507">y en este caso un post del foro de esta herramienta infalible</a>) nos soluciona el problema de una manera relativamente sencilla.</p>
+<p><!--more--></p>
+<p>Aunque sabéis que pongo siempre paso por paso capturas del proceso, básicamente lo que hay que hacer es irse hasta</p>
+<p><em>C:\Xilinx\14.1\ISE_DS\ISE\lib\nt64,</em></p>
+<p>renombrar <em>libPortability.dll</em> a <em>libPortability.dll.orig</em>, renombrar <em>libPortabilityNOSH.dll</em> a <em>libPortability.dll, </em>copiar este último y pegarlo en</p>
+<p><em>C:\Xilinx\14.5\ISE_DS\common\lib\nt64.</em></p>
+<p>Aunque sé que todos los que leen estos son extremadamente inteligentes, si os percatáis hay tanto la opción de nt como de nt64. Como dicta vuestro sentido común, si tenéis un sistema de 32 bit. usad nt, si tenéis un sistema de 64 bit usad nt64.</p>
+<p>¡Fuego apagado!</p>
+<p>Si os interesa saber porqué crashea, también lo explica en la última linea en el post.</p>
+<p><em>Recordatorio: Si no sabes aumentar la imagen al máximo, aquí tienes un pequeño GIF:<img class="alignnone size-full wp-image-1007" src="{{ site.baseurl }}/assets/2016/02/b2f33e3d00bcfb8da6e91bcb1502db01.gif" alt="GIF Abrir imagen" width="800" height="436" /></em></p>
+<p>[gallery ids="1049,1050,1051,1052,1053,1054,1055,1056,1057,1058,1059,1060,1061,1062,1063,1064" type="slideshow"]</p>

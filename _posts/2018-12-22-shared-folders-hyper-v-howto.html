@@ -1,0 +1,77 @@
+---
+layout: post
+title: 'Shared Folders &amp; Hyper-V: howto'
+date: 2018-12-22 23:55:03.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Sin categoría
+tags: []
+meta:
+  _wpas_skip_13558039: '1'
+  _wpas_skip_1128139: '1'
+  timeline_notification: '1545522906'
+  _publicize_job_id: '25768182452'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2018/12/22/shared-folders-hyper-v-howto/"
+---
+<p><!-- wp:paragraph --></p>
+<p>¡Hola! Después de 2398 años sin subir artículo, hoy toca hablar un poco de cómo conseguir un folder compartido entre tu host de máquinas virtuales Hyper-V y tus máquinas cliente.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Ya hablaré en otro momento de porqué estoy usando Hyper-V o porqué me es tan conveniente, pero por hoy vamos a intentar solucionar este problema que tenemos.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Tal como viene predeterminado,  el adaptador de red ya hace un buen trabajo metiéndote tanto dentro del dominio local como a la red propia del host, por lo que no hace falta tocar nada. El comienzo es crear en donde queramos una carpeta que se va a compartir en el host, y darle permisos de sharing:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":1864,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="{{ site.baseurl }}/assets/2018/12/image.png" alt="" class="wp-image-1864" /></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:image {"id":1865,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="{{ site.baseurl }}/assets/2018/12/image-1.png" alt="" class="wp-image-1865" /></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Así, damos a un usuario permisos compartidos.  Ahora, dentro de la máquina cliente, vamos a crear una nueva ubicación de red que apunte a la carpeta que acabamos de crear.  <em>Nota: para conocer cómo acceder a esta carpeta podemos acceder a sus propiedades&nbsp;y&nbsp;en&nbsp;"Compartir" ver&nbsp;la&nbsp;dirección:</em></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":1866,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="{{ site.baseurl }}/assets/2018/12/image-2.png" alt="" class="wp-image-1866" /><br />
+<figcaption>Mirar aquí qué dirección hay que poner<br /></figcaption>
+</figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:image {"id":1867,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="{{ site.baseurl }}/assets/2018/12/image-3.png" alt="" class="wp-image-1867" /></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:image {"id":1868,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="{{ site.baseurl }}/assets/2018/12/image-4.png" alt="" class="wp-image-1868" /></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Aquí necesitaréis iniciar sesión con el usuario y contraseña de la cuenta host.  <em>Nota: recalco&nbsp;contraseña,&nbsp;me&nbsp;daba&nbsp;problemas&nbsp;para&nbsp;conectar&nbsp;a&nbsp;mi&nbsp;cuenta&nbsp;host&nbsp;si&nbsp;ésta&nbsp;no&nbsp;tenía&nbsp;contraseña&nbsp;predeterminada,&nbsp;por&nbsp;lo&nbsp;que&nbsp;yo&nbsp;de&nbsp;vosotros&nbsp;pondría&nbsp;una&nbsp;contraseña&nbsp;a&nbsp;vuestra&nbsp;cuenta.</em></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":1869,"align":"center"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter"><img src="{{ site.baseurl }}/assets/2018/12/image-5.png" alt="" class="wp-image-1869" /><br />
+<figcaption>Y con esto, ¡ya tenéis una carpeta compartida! (Se puede cambiar el nombre antes de confirmar)</figcaption>
+</figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Con este pequeño pero espero que útil artículo, espero que os vaya bien a la hora de añadir carpetas compartidas en vuestras soluciones Hyper-V :^)</p>
+<p><!-- /wp:paragraph --></p>

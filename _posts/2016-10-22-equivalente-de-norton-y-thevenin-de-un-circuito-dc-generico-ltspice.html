@@ -1,0 +1,62 @@
+---
+layout: post
+title: Equivalente de Norton y Thevenin de un circuito DC genérico - LTSpice
+date: 2016-10-22 02:03:26.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Circuitos
+tags: []
+meta:
+  _oembed_78eefccad2ae1df1a628a8f6bfc0681c: <div class="embed-twitter"><blockquote
+    class="twitter-tweet" data-width="500"><p lang="en" dir="ltr">The Battlefield
+    games are a pure game series completely free of any bugs. <a href="https://t.co/qqdJJIlIQc">https://t.co/qqdJJIlIQc</a>
+    <a href="https://t.co/I6C5dCvbDK">pic.twitter.com/I6C5dCvbDK</a></p>&mdash; Momster
+    Girl @ MFF (@Kingdomcub) <a href="https://twitter.com/Kingdomcub/status/790250869589630976">October
+    23, 2016</a></blockquote><script async src="//platform.twitter.com/widgets.js"
+    charset="utf-8"></script></div>
+  _edit_last: '31203507'
+  _thumbnail_id: '1675'
+  _oembed_time_78eefccad2ae1df1a628a8f6bfc0681c: '1477297060'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/789648351914360832";}}
+  geo_public: '0'
+  _wpas_skip_13558039: '1'
+  _publicize_job_id: '28100727392'
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/10/22/equivalente-de-norton-y-thevenin-de-un-circuito-dc-generico-ltspice/"
+---
+<p>Ok, todos sufrimos a diario cada vez que tenemos hacer <strong>análisis de circuitos</strong> y no somos especialmente versados en el manejo de señales excesivamente complicadas. Pero hoy os traigo un <strong>atisbo de esperanza</strong> para todos aquellos: ¡<strong>LTSpice</strong>! Es una herramienta bastante potente, con diferentes tipos de análisis (los iremos viendo en algunos ejemplos), viendo hoy un ejemplo de <strong>análisis en punto de operación</strong> de continua, o como lo llamarían los contemporáneos ingleses un DC op: sacar voltajes e intensidades de los nudos de un circuito.</p>
+<p><!--more--></p>
+<p>Esto está muy bien para analizar circuitos ya hechos, pero imaginaos que queremos algo un poquitín más abstracto: sacar equivalentes de Norton y Thevenin (todo estudiante de ingeniería electrónica pasó/pasará por esto), y hacer una comprobación de tu circuito no es especialmente sencillo, complicándose aún más con circuitos con fuentes dependientes y aún peor cuando hablamos de régimenes fasoriales.</p>
+<p>Pero hoy nos concentraremos en hallar los<strong> equivalentes de Thevenin y Norton de un circuito genérico de DC</strong>. Voy a tomar este ejemplo del Calvin College, en Michigan, y trabajar con este circuito:</p>
+<p><img class="aligncenter size-full wp-image-1668" src="{{ site.baseurl }}/assets/2016/10/xd.gif" alt="circuito1" width="227" height="190" /></p>
+<p><a href="http://www.calvin.edu/~svleest/circuitExamples/TheveninNorton/thev1.ans.htm">Aquí os dejo el enlace completo a la solución</a>, por si queréis comprobar de forma teórica que en efecto, la simulación es correcta.</p>
+<p>Os voy adelantando: vamos a usar el simulador como si fuera <strong>un circuito real</strong>, y aunque no tenemos ningún tipo de marcadores para ir midiendo manualmente la tensión o la intensidad entre A y B, podemos<strong> hacer algunos trucos</strong> para que el análisis del punto de operación nos dé <strong>los datos que queramos</strong>.</p>
+<p><em>Aviso: al tratarse como circuito real, da resultados levemente diferentes a los teóricos, con un error notable a partir de la primera décima, así que tampoco os toméis a pecho las soluciones que dé, más bien como un indicatorio de que lo que estáis haciendo va por buen camino o no.</em></p>
+<p>Vamos a hallar primero VTh, la tensión de Thevenin.</p>
+<p>Montamos el circuito entero en LTSpice, asignamos Va y Vb a los nudos entre los que queremos hacer el equivalente de Thevenin y ponemos Va como tierra del circuito:</p>
+<p><img class="size-medium wp-image-1669 aligncenter" src="{{ site.baseurl }}/assets/2016/10/1.png?w=300" alt="1" width="300" height="269" /></p>
+<p>Simulamos con DC op, y obtenemos lo siguiente:</p>
+<p><img class="size-medium wp-image-1670 aligncenter" src="{{ site.baseurl }}/assets/2016/10/2.png?w=300" alt="2" width="300" height="151" /></p>
+<p>Como vemos, Vb da 4.0909, que redondeado da 4.1, que es el valor teórico de la tensión de Thevenin! Así que no vamos por mal camino.</p>
+<p>Podemos hacer un cambio muy rápido para medir In, la intensidad de Norton: insertar entre A y B un generador de voltaje de 1V y medir la intensidad que pasa por Vb:</p>
+<p><img class="size-medium wp-image-1671 aligncenter" src="{{ site.baseurl }}/assets/2016/10/5.png?w=300" alt="5" width="300" height="288" /></p>
+<p><img class="size-medium wp-image-1672 aligncenter" src="{{ site.baseurl }}/assets/2016/10/6.png?w=300" alt="6" width="300" height="171" /></p>
+<p>Aunque no lo pone en la solución (lo podréis comprobar después cuando veamos Rth con la ley de Ohm) el resultado teórico da alrededor de 0.007A, lo cual vemos está relativamente alejado de la solución que nos da el simulador, 0.0056A. Al menos mantiene el mismo orden de magnitud y estamos hablando del 3er decimal de diferencia, así que tampoco está tan mal.</p>
+<p>Por último, calculamos la resistencia de la misma manera que en un circuito real: Anulamos generadores independientes y comprobamos la asociación de resistencias. Como es un circuito, podemos hacer también simplemente poner un generador de corriente de 1A, obtener VI1 y después sacar la resistencia a través de la ley de Ohm, Reg = V/I, VI1/1 =&gt; VI1:</p>
+<p>&nbsp;</p>
+<p><img class="size-medium wp-image-1673 aligncenter" src="{{ site.baseurl }}/assets/2016/10/3.png?w=300" alt="3" width="300" height="276" /> <img class="size-medium wp-image-1674 aligncenter" src="{{ site.baseurl }}/assets/2016/10/4.png?w=300" alt="4" width="300" height="170" /></p>
+<p>¡Precaución! Nos sale resistencia negativa porque en LTSpice siempre el positivo va de - a +, y si os fijais en el circuito nuestra fuente de alimentación auxiliar está al revés, yendo de A a B y por lo tanto en el sentido VBA en vez de VAB.</p>
+<p>¡Bueno, espero que os haya servido!</p>
+<p>E.</p>

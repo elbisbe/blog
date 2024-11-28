@@ -1,0 +1,752 @@
+---
+layout: post
+title: C 101
+date: 2016-10-20 13:13:07.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- '101'
+tags: []
+meta:
+  _edit_last: '31203507'
+  geo_public: '0'
+  _wp_old_slug: c-101
+  _publicize_job_id: '28045656504'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/789092105171836928";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _wpas_skip_13558039: '1'
+  _wpas_skip_1128139: '1'
+  _thumbnail_id: '1661'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/10/20/c-101-2/"
+---
+<p>Empezamos los 101, una serie de "glosarios" o cursos donde intento resumir de manera concisa y detallada muchos detalles de algunos lenguajes de programación o algunos lenguajes que si no están relacionados directamente con la programación, pueden servir para su desarollo.</p>
+<p>Este curso será de C, a partir de la experiencia que he adquirido en mi primer año de universidad, con el fin de que sea útil a cualquiera. De todas maneras, toda esta información gratuita sobre el tema se puede encontrar en internet, siendo la madre de las soluciones de las dudas de la programación <a href="http://stackexchange.com/">Stack Exchange</a> y más en concreto, <a href="http://superuser.com/">SuperUser</a>.</p>
+<p><!--more--></p>
+<p>-- EN CONSTRUCCIÓN --<br />
+-- EN CONSTRUCCIÓN --</p>
+<p><em>Aviso: Aunque la mayoría de los ejemplos son de creación propia, algunos están inspirados en mis clases de universidad, así que puede haber algún gazapo que se me haya escapado, sobre todo en los ejemplos más grandes. Además, otros ejemplos o explicaciones están inspiradas en los artículos de <a href="http://www.tutorialspoint.com/">tutorialspoint</a>, con muy buenas explicaciones en C.</em></p>
+<p>Vamos a organizarlo en unos puntos principales:</p>
+<h2><a href="#variables"> Variables </a></h2>
+<ul>
+<li><a href="#variables0"> Recordatorio básico </a></li>
+<li><a href="#variables1"> Tipos de dato </a></li>
+<li><a href="#variables2"> Asignaciones </a></li>
+<li><a href="#variables3"> Operaciones </a></li>
+<li><a href="#variables4"> Macros </a></li>
+</ul>
+<h2><a href="#senbuc"> Sentencias y bucles </a></h2>
+<ul>
+<li><a href="#senbuc1"> Lógica de decisión </a></li>
+<li><a href="#senbuc2"> Sentencias if-else </a></li>
+<li><a href="#senbuc3"> Sentencias switch </a></li>
+<li><a href="#senbuc4"> El operador ?: </a></li>
+<li><a href="#senbuc5"> Bucles while y do-while </a></li>
+<li><a href="#senbuc6"> Bucles for </a></li>
+</ul>
+<h2><a href="#funciones"> Funciones </a></h2>
+<ul>
+<li><a href="#funciones1"> Sintaxis básica </a></li>
+<li><a href="#funciones2"> Argumentos </a></li>
+<li><a href="#funciones3"> Variables dentro de funciones: scope </a></li>
+</ul>
+<h2><a href="#arrays"> Tablas, o arrays </a></h2>
+<h2><a href="#punteros"> Punteros </a></h2>
+<ul>
+<li><a href="#punteros1"> Información básica </a></li>
+<li><a href="#punteros2"> C en todo su potencial: uso de memoria </a></li>
+<li><a href="#punteros3"> Punteros en el uso de tablas </a></li>
+<li><a href="#punteros4"> Punteros para estructuras </a></li>
+<li><a href="#punteros5"> Uso de punteros para pasar argumentos </a></li>
+</ul>
+<h2><a href="#estructuras"> Estructuras </a></h2>
+<ul>
+<li><a href="#estructuras1"> Sintaxis básica de las estructura </a></li>
+<li><a href="#estructuras2"> Acceso a las estructuras </a></li>
+<li><a href="#estructuras3"> Estructuras complejas </a></li>
+</ul>
+<h2><a href="#strings"> Strings </a></h2>
+<h2><a href="#memoria"> Memoria dinámica de memoria </a></h2>
+<ul>
+<li><a href="#memoria1"> Uso del "malloc" </a></li>
+<li><a href="#memoria2"> Uso del "free" </a></li>
+<li><a href="#memoria3"> Segmentation fault y otros errores </a></li>
+</ul>
+<h2><a href="#texto"> Archivos de texto </a></h2>
+<ul>
+<li><a href="#texto1"> Lectura de archivos de texto </a></li>
+<li><a href="#texto2"> Escritura de archivos de texto </a></li>
+</ul>
+<h2><a href="#misc"> Miscelánea </a></h2>
+<ul>
+<li><a href="#misc1"> Comandos para programar en Terminal (Linux) </a></li>
+<li><a href="#misc2"> Headers o archivos cabecera</a></li>
+<li><a href="#misc3"> Códigos ASCII </a></li>
+</ul>
+<p>¡Y empezamos!</p>
+<h3 id="variables">Variables</h3>
+<p>Empezemos por lo básico, por donde comenzaremos a usar el mundo de la programación: las <b>variables</b>. Éstas consisten en los datos que iremos manejando en nuestras aplicaciones. En C tienen la siguiente estructura: primero se declara el <strong>tipo de dat</strong>o (lo vemos en el siguiente punto), después el <strong>nombre</strong> de nuestra variable, y de forma opcional se puede declarar directamente el <strong>valor</strong> asociado a la variable.</p>
+<p>Vamos a ver un ejemplo rápido:</p>
+<p>[code language="cpp"]<br />
+int numero = 5;<br />
+char palabra = &quot;Hola&quot;;</p>
+<p>// cómo añadir un valor a una variable vacía</p>
+<p>int numero;<br />
+numero = 5; // int numero = 5;<br />
+[/code]</p>
+<h4 id="variables0">Recordatorio básico</h4>
+<ul>
+<li><strong>Punto y coma (semicolon, ; )</strong> = En C, el punto y coma es final de línea. Recuerda ponerlo siempre, porque si no C entenderá que sigues en la misma línea.</li>
+<li><strong>Comentarios (/* */, // )</strong> = El primero pone como comentario todo el texto entre los 2, inclutyendo saltos de linea, y el segundo solamente se pone al principio y pone el frase a partir de ahí en comentario.</li>
+<li><strong>Identificadores de variable</strong>: son sensibles a mayúsculas y minúsculas (hola y Hola son 2 variables diferentes), y no se puede usar ", $ ni % en los identificadores.</li>
+<li><strong>Palabras clave o keywords</strong>: palabras que no se pueden usar como nombre en constantes, variables u otro tipo de identificador. <a href="http://tigcc.ticalc.org/doc/keywords.html">Aquí tienes una lista</a>.</li>
+</ul>
+<h4 id="variables1">Tipos de dato</h4>
+<p>En C, existe un concepto muy importante llamado <strong>tipo de dato</strong>. Esto significa que en función del valor de la información el tipo de dato correspondiente es uno u otro, y en C es<strong> MUY IMPORTANTE especificar el tipo correcto de tipo de dato</strong>, porque esto tiene 2 consecuencias:</p>
+<ul>
+<li>El tipo de dato influye directamente en la<strong> cantidad de memoria</strong> que consume el programa, y por lo tanto directamente en su optimización, y como es lo mejor para el programa ser lo más eficiente posible es necesario que el <strong>tipo de dato sea el correcto.</strong></li>
+<li>Lo veremos más adelante cuando hablemos de las <strong>funciones</strong>, pero es importante ser certero a la hora de especificar el tipo de dato para <strong>no crear discrepancias y errores</strong> con las funciones que usen estas variables que estamos creando. No os preocupéis, hablaremos de eso en su momento.</li>
+</ul>
+<p>Por lo tanto, tenemos varios tipos de dato. <a href="https://mas140blog.wordpress.com/wp-content/uploads/2016/07/tipos.pdf">En este PDF </a>podéis encontrar la explicación completa sobre los distintos tipos de dato.</p>
+<p>Básicamente los tipos de dato fundamentales son:</p>
+<ul>
+<li><strong>int</strong> (%d): números enteros hasta 2^16.</li>
+<li><b>long </b>(%li): números enteros hasta 2^32.</li>
+<li><strong>float</strong> (%f): números reales.</li>
+<li><strong>double</strong> (%lf): números reales de más capacidad.</li>
+<li><strong>char </strong>(%c): caracteres.</li>
+</ul>
+<p>Lo que aparece al lado es el<strong> formato de escritura</strong>, es decir, cómo se escribe el tipo de dato para imprimirlo en pantalla. Ahora, cuando avancemos un poco, veremos ejemplos prácticos de esto.<br />
+<a href="https://mas140blog.wordpress.com/wp-content/uploads/2016/07/formatos.pdf">Aquí hay otro PDF </a>donde se explica más detalladamente los formatos de escritura.<br />
+También, cuando estamos escribiendo el formato de escritura, nos pueden aparecer las siguientes opciones:</p>
+<ul>
+<li><strong>%d</strong> =&gt; normal</li>
+<li><strong>%4d</strong> =&gt; número apareciendo a la derecha 4 espacios (para alinear)</li>
+<li><strong>%.4d</strong> =&gt; número con hasta 4 decimales</li>
+<li><strong>\n</strong> =&gt; salto de línea</li>
+</ul>
+<h4 id="variables2">Asignaciones</h4>
+<p>Aquí trataremos de tratar el tema de las asignaciones, es decir, cuando asignamos el valor a una variable. El problema en C es que hay que tener en cuenta que hay que jugar con la memoria con el fin de entender como realmente afectan nuestras acciones al programa.</p>
+<p>Como hemos visto, la manera de asignar un valor a una variable es:</p>
+<p>[code language="cpp"]<br />
+int prueba = hola;<br />
+int prueba;<br />
+prueba = hola;<br />
+[/code]</p>
+<p>Sin embargo, veremos que hay algunos factores que pueden complicar esta tarea.<br />
+Por ejemplo, vamos a ver el caso de asignar una letra, y el caso de asignar una palabra.</p>
+<p>[code language="cpp"]<br />
+char letra = &quot;h&quot;;<br />
+char palabra [5] = {'H', 'e', 'l', 'l', 'o', '&#092;&#048;'};<br />
+char palabra2 [] = &quot;Hello&quot;;<br />
+[/code]</p>
+<p>A medida que vayamos avanzando en el artículo, veremos las particularidades de cada una de las asginaciones.</p>
+<h4 id="variables3">Operaciones</h4>
+<p>Como en la aritmética matemática, tenemos la <strong>suma</strong> (+), la <strong>resta</strong> (-), la <strong>multiplicación</strong> (*) y la <strong>división</strong> (/).</p>
+<p>Otro operador importante es el %; que indica el <strong>resto</strong> de la operación de dividir el número anterior por el posterior (útil para ver si hay <strong>números divisibles entre otros</strong> y ese tipo de cosas)</p>
+<p>Un detalle a tener en cuenta, es que la <strong>información se guarda en función del tipo de dato</strong> en el que estén trabajando.</p>
+<p>Hay varios tipos de operadores en C: <strong>aritméticos, relacionales, lógicos, bit-a-bit, de asignación y otros</strong>. Mi mejor consejo es que consultéis aquí <a href="http://www.tutorialspoint.com/cprogramming/c_operators.htm">el artículo de <em>tutorialspoint</em></a> donde explican mediante el uso de tablas los distintos operadores y su función. No os preocupéis, los veremos en acción.</p>
+<p><em> Nota: con el propósito de mostrar un buen ejemplo, hacemos uso de una parte de C de la que no hemos hablado: las funciones, concretamente la función <strong>printf</strong>. Lo que nos tenemos que quedar es que es una herramienta a la que introducimos un texto o una variable de cierta manera y esa información se exporta a la consola. Más adelante veremos cómo funciona en detalle la sintaxis de las funciones. </em></p>
+<p><em> <u> Ejemplo </u></em></p>
+<p>[code language="cpp"]<br />
+int a = 5;<br />
+double b = 5;<br />
+a = a / 3;<br />
+b = b / 3;<br />
+printf(a); // OUTPUT: 1<br />
+printf(b); // OUTPUT: 1,6666<br />
+[/code]</p>
+<p>Como podemos ver, cuando el tipo de dato no puede contener decimales (como un int), el <strong>resultado de la división/multiplicación se trunca</strong>: es decir, se corta hasta el máximo que se pueda almacenar.</p>
+<h4 id="variables4">Macros</h4>
+<p>Aparte de definir variables dentro de nuestra aplicación, o dentro de nuestras funciones, podemos usar una "variable global" o <strong>macro</strong>. Lo que sirve es para crear una variable con un cierto valor que <strong>se pueda acceder en cualquier función</strong> del mismo documento.</p>
+<p><em> <u> Sintaxis </u></em></p>
+<p>[code language="cpp"]<br />
+#define + nombre de la variable + valor de la variale<br />
+const + tipo de variable = valor de la variable<br />
+[/code]</p>
+<p><em> <u> Ejemplo </u></em></p>
+<p>[code language="cpp"]<br />
+#define PI 3.14<br />
+int main () {<br />
+  const int NUMERO = 2;<br />
+  printf (NUMERO + PI); // OUTPUT 5.14<br />
+  return 0;<br />
+}<br />
+[/code]</p>
+<h3 id="senbuc">Sentencias y bucles</h3>
+<p>Vamos a comenzar una etapa bastante importante de la programación en C: el uso lógico para la toma de decisiones. Esto es la base de la programación, ya que es lo que vamos a "programar", es decir, el objetivo principal de nuestros programas son que analicen una condición y que realizen una condición o otra en función de como esté programado.</p>
+<p>Podemos encontrar en C los siguientes tipos de sentencias de lógica de decisión:</p>
+<ul>
+<li>Sentencias if</li>
+<li>Sentencias if.. else</li>
+<li>Sentencias if anidado</li>
+<li>Sentencias switch</li>
+<li>Sentencias switch anidado</li>
+</ul>
+<h4 id="senbuc1">Lógica de decisión</h4>
+<p>Podemos encontrar algo claro en la lógica de decisión en C: se parte de una<strong> condición</strong>. A partir de ahí se analiza la condición: <strong>si se cumple, se ejecuta el código</strong> de la condición y se sigue con el código siguiente, y <strong>si no se cumple</strong> (es decir, la condición es falsa), <strong>no se ejecuta el código de la condición y se va directamente al código siguiente</strong>.</p>
+<p>En la programación asumimos que cualquier valor<strong> distintos de cero</strong> y distinto de nulo es verdadero (<strong>TRUE</strong>), y si es <strong>cero o nulo</strong>, entonces es falso (<strong>FALSE</strong>).</p>
+<h4 id="senbuc2">Sentencias if-else</h4>
+<p><em> <u> Sentencia if </u></em><br />
+Una sentencia if consiste de una expresión boleana seguida de una o más sentencias.</p>
+<p><em> Sintaxis </em></p>
+<p>[code lang="cpp"]<br />
+if(boolean_expression) {<br />
+   /* statement(s) will execute if the boolean expression is true */<br />
+}<br />
+[/code]</p>
+<p>Si la expresión boleana es verdadera, entonces el código dentro del if se ejecuta. Si la expresión boleana es falsa, entonces el código al final del if se ejecuta. Sigue existiendo la lógica de decisión.</p>
+<p><em> Ejemplo </em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 10;</p>
+<p>   /* check the boolean condition using if statement */</p>
+<p>   if( a &lt; 20 ) {<br />
+      /* if condition is true then print the following */<br />
+      printf(&quot;a is less than 20\n&quot; ); // se ejecuta<br />
+   }</p>
+<p>   printf(&quot;value of a is : %d\n&quot;, a); // value of a is : 10</p>
+<p>   return 0;<br />
+}x<br />
+[/code]</p>
+<p><em> <u> Sentencia if... else </u></em><br />
+Una sentencia if puede ser seguida por una sentencia opcional else, que se ejecuta cuando la expresión boleana era falsa.</p>
+<p><em> Sintaxis </em></p>
+<p>[code lang="cpp"]<br />
+if(boolean_expression) {<br />
+   /* statement(s) will execute if the boolean expression is true */<br />
+}<br />
+else {<br />
+   /* statement(s) will execute if the boolean expression is false */<br />
+}<br />
+[/code]</p>
+<p>Si la expresión boleana se evalúa como cierta, el código dentro del if se ejecutará; de otro modo, el bloque de código else se ejecutará.</p>
+<p><em> Ejemplo </em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 100;</p>
+<p>   /* check the boolean condition */<br />
+   if( a &lt; 20 ) {<br />
+      /* if condition is true then print the following */<br />
+      printf(&quot;a is less than 20\n&quot; );<br />
+   }<br />
+   else {<br />
+      /* if condition is false then print the following */<br />
+      printf(&quot;a is not less than 20\n&quot; ); // se ejecuta<br />
+   }</p>
+<p>   printf(&quot;value of a is : %d\n&quot;, a); // value of a is: 100</p>
+<p>   return 0;<br />
+}<br />
+[/code]</p>
+<p>Se pueden stackear los "else if" para hacer los else que se necesiten.</p>
+<p><em> Ejemplo </em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 100;</p>
+<p>   /* check the boolean condition */<br />
+   if( a == 10 ) {<br />
+      /* if condition is true then print the following */<br />
+      printf(&quot;Value of a is 10\n&quot; );<br />
+   }<br />
+   else if( a == 20 ) {<br />
+      /* if else if condition is true */<br />
+      printf(&quot;Value of a is 20\n&quot; );<br />
+   }<br />
+   else if( a == 30 ) {<br />
+      /* if else if condition is true  */<br />
+      printf(&quot;Value of a is 30\n&quot; );<br />
+   }<br />
+   else {<br />
+      /* if none of the conditions is true */<br />
+      printf(&quot;None of the values is matching\n&quot; ); // se ejecuta<br />
+   }</p>
+<p>   printf(&quot;Exact value of a is: %d\n&quot;, a ); // Exact value of a is: 100</p>
+<p>   return 0;<br />
+}<br />
+[/code]</p>
+<h4 id="senbuc3">Sentencia switch</h4>
+<p>Visto el if-else, vamos a ver una sentencia un poco más elegante que un if.. else: switch.</p>
+<p><em> Sintaxis de switch </em></p>
+<p>[code lang="cpp"]<br />
+switch(expression) {</p>
+<p>   case constant-expression1  :<br />
+      statement(s);<br />
+      break; /* optional */</p>
+<p>   case constant-expression2  :<br />
+      statement(s);<br />
+      break; /* optional */</p>
+<p>   /* you can have any number of case statements */<br />
+   default : /* Optional */<br />
+   statement(s);<br />
+}<br />
+[/code]</p>
+<p>Aquí tenemos que analizar varias cosas:</p>
+<ul>
+<li>1º: escoges una <strong>variable</strong> que tiene un cierto valor</li>
+<li>2º: vas poniendo <strong>casos de cada variable</strong>: si la variable vale 1, se va al caso 1; si la variable vale 2, se va al caso 2, etc.</li>
+<li>3º: si el valor de la variable <strong>no está definido</strong> por un case, <strong>no hará nada</strong> excepto que haya un caso<strong> default</strong>, que corresponde al resto de casos, siendo este default opcional.</li>
+<li>4º: originalmente <strong>cuando ejecutes un caso ejecutará TODOS los case</strong> que tenga por debajo excepto el default. Si queremos evitar eso hace falta poner un <strong>break</strong>; al final de cada case, que indica al programa que queremos terminar el switch al final de ese caso.</li>
+</ul>
+<p>El diagrama de flujo es bastante poco explicativo en este caso, ya que no explica los break, pero algo es algo:</p>
+<p><a href="https://www.tutorialspoint.com/cprogramming/switch_statement_in_c.htm"><em> Diagrama de flujo en los switch</em></a></p>
+<p><img class="size-medium wp-image-1651 aligncenter" src="{{ site.baseurl }}/assets/2016/10/xd1.jpg?w=224" alt="Tutorialspoint / Switch" width="224" height="300" /></p>
+<p>Vamos a ver un ejemplo:</p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   char grade = 'B';</p>
+<p>   switch(grade) {<br />
+      case 'A' :<br />
+         printf(&quot;Excellent!\n&quot; );<br />
+         break;<br />
+      case 'B' :<br />
+      case 'C' :<br />
+         printf(&quot;Well done\n&quot; );<br />
+         break;<br />
+      case 'D' :<br />
+         printf(&quot;You passed\n&quot; );<br />
+         break;<br />
+      case 'F' :<br />
+         printf(&quot;Better try again\n&quot; );<br />
+         break;<br />
+      default :<br />
+         printf(&quot;Invalid grade\n&quot; );<br />
+   }</p>
+<p>   printf(&quot;Your grade is  %c\n&quot;, grade );</p>
+<p>   return 0;<br />
+}<br />
+[/code]</p>
+<p>Este código devolverá "Well done / Your grade is B";</p>
+<h4 id="senbuc4">El operador ?:</h4>
+<p>El operador ?: puede usarse para reemplazar sentencias if... else. Tienen la forma general:</p>
+<p><em> Sintaxis de ?: </em></p>
+<p>[code lang="cpp"]<br />
+Exp1 ? Exp2: Exp3;<br />
+[/code]</p>
+<p>donde Exp1, Exp2 y Exp3 son expresiones. Notar el uso y la posición del colon o punto y coma (;).</p>
+<p>Se determina de la siguiente forma:</p>
+<ul>
+<li>Se evalúa la expresión Exp1. Si es verdad, entonces Exp2 se evalúa y se convierte el valor de la expresión ?.</li>
+<li>Si Exp1 es falso, entonces Exp3 es evaluado y su valor se convierte en el valor de la expresión.</li>
+</ul>
+<h4 id="senbuc5">Bucles while y do-while</h4>
+<p>Ya vistas las sentencias de comparación básicas (if...else) vamos a algo relativamente más complicado, pero que agilizará muchas de nuestras tareas de manera masiva: <strong>los bucles</strong>. Como su misma definición dice, son unas sentencias que se van ejecutando siempre y cuando una condición inicial se cumpla (hasta aquí igual que if... else) pero lo interesante de esto es que <strong>mientras la condición inicial no se cumpla, podemos hacer que la ejecución de las sentencias de dentro del bucle se repitan más de una vez</strong>, al contrario que en las sentencias básicas!</p>
+<p><em> Sintaxis de while </em></p>
+<p>[code lang="cpp"]<br />
+while(condición) {<br />
+   sentencia(s);<br />
+}<br />
+[/code]</p>
+<p>Como va esto es sencillo: <strong>mientras que la condición de entrada no se cumpla, la sentencia se va a ejecutar una y otra vez</strong>. Obviamente vemos que es muy sencillo crear un<strong> bucle infinito</strong>, y seguramente más de una vez os habrá explotado el ordenador porque aunque no consuma memoria per sé, el ordenador se queda haciendo las sentencias indefinidamente lo cual deja la maquina bastante bloqueada. ¿Cómo solucionamos esto? Hay <strong>muchas maneras</strong> de salir de un bucle, ya las iréis viendo mientras trabajéis más C y veáis ejemplos (que si llegar al final de un array de letras, también llamado string; que si un puntero apunte a NULL, etc) pero la más común es que se unan los bucles con las sentencias antes trabajadas y activemos en el caso de un resultado positivo el<strong> flag</strong> o la variable que nos permita salir del bucle.<br />
+Vamos a ver un ejemplo rápido de esto:</p>
+<p><em> Ejemplo de flag en bucles </em></p>
+<p>[code lang="cpp"]<br />
+int i = 0;<br />
+int flag = 0;<br />
+while(flag == 0) {<br />
+    i++;<br />
+    if (i == 5)<br />
+       flag = 1;<br />
+}<br />
+[/code]</p>
+<p>Vale que es un ejemplo bastante rebuscado (en vez de usar un flag podía hacer directamente <em>while(i&lt;=5)</em>), pero os muestra la esencia del<strong> flag: una variable que usamos para decirle al bucle que la condición que queríamos que se cumpliese se ha cumplido</strong>. Como veréis en ejemplos posteriores, el flag más usado por lo general suele ser un i; una variable int que va subiendo o bajando su valor gradualmente, dependiendo de como queramos.<br />
+Entonces, ¿para qué sirven los bucles? Como alguno ya habrá visto, son bastante útiles porque nos sirven para <strong>ejecutar un mismo código una cantidad de veces limitada que podemos controlar</strong>, ya sea comparando una variable, asignando un flag...</p>
+<p><a href="https://www.tutorialspoint.com/cprogramming/c_while_loop.htm"><em> Diagrama de flujo en los while</em></a></p>
+<p><img class="size-medium wp-image-1636 aligncenter" src="{{ site.baseurl }}/assets/2016/10/xd.png?w=195" alt="Flux Diagram / While" width="195" height="300" /></p>
+<p>Y vamos a ver por fin un ejemplo práctico: imprimir por pantalla los números del 10 al 19. ¿10 printf? ¡No, por favor! No nos pagan por trabajar de más:</p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 10;</p>
+<p>   /* while loop execution */<br />
+   while( a &lt; 20 ) {<br />
+      printf(&quot;value of a: %d\n&quot;, a);<br />
+      a++;<br />
+   }</p>
+<p>   return 0;<br />
+}<br />
+[/code]</p>
+<p>Como imaginaréis, imprime por pantalla "value of a: 10", "value of a: 11", y así hasta el 20. ¿Útil, verdad?</p>
+<p>Vamos a ver una versión un poco más avanzada de esto:</p>
+<p><em> Sintaxis de do... while </em></p>
+<p>[code lang="cpp"]<br />
+do {<br />
+   statement(s);<br />
+} while( condition );<br />
+[/code]</p>
+<p>Ok, ¿qué es esto?. Vamos a ver un momento el diagrama de flujo de este bucle:</p>
+<p><a href="https://www.tutorialspoint.com/cprogramming/c_while_loop.htm"><em>Diagrama de flujo en los do... while</em></a></p>
+<p><img class="size-medium wp-image-1650 aligncenter" src="{{ site.baseurl }}/assets/2016/10/xd.jpg?w=251" alt="xd" width="251" height="300" /></p>
+<p>Es un poco complicado de comprender qué hace o para qué sirve si no lo has usado nunca, pero es muy transparente una vez hacemos una comparación:</p>
+<ul>
+<li>En el bucle <em>while</em>, primero se comprueba la condición y después se ejecuta el bloque de código. <strong>1º condición, 2º código</strong>.</li>
+<li>En el bucle <em>do.. while</em>, sin embargo, primero se ejecuta el bloque de código y después se comprueba la condición. <strong>1º código, 2º condición.</strong></li>
+</ul>
+<p>¿Para qué sirve esto, entonces? El mejor ejemplo que se me ocurre ahora mismo es un <strong>menú de una aplicación</strong>. Imaginad que tenéis una aplicación con varias funciones, pero no te quieres limitar a cada vez que quieras usar una funcionalidad del programa, lo tengas que cargar de nuevo, ¿verdad?</p>
+<p>Así que lo que puedes hacer es usar do... while haciendo que muestre por pantalla el menú principal (es decir, que vuelva a él una vez haya terminado la funcionalidad, y por lo tanto haya terminado el bucle) mientras el usuario no le dé explicitamente a la opción de salir de la aplicación.</p>
+<p>Os pongo 2 ejemplos, uno de mi idea y otro más general sobre el do.. while:</p>
+<p><em>Ejemplo 1</em></p>
+<p>[code lang="cpp"]<br />
+int opcion;<br />
+int salir == 0; // Aquí inicializo salir a 0 para asegurar que es algo distinto de 1<br />
+do {<br />
+   printf(&quot;Menú principal: Escoja una función 1-3 o salga del programa con 4.\n&quot;);<br />
+   scanf(&quot;%d&quot;, &amp;opcion);<br />
+   switch(opcion) {<br />
+       case 1 :<br />
+         función1;<br />
+         break;<br />
+       case 2 :<br />
+         función2;<br />
+         break;<br />
+       case 3 :<br />
+         función3;<br />
+         break;<br />
+       case 4 :<br />
+         printf(&quot;Saliendo del programa...\n&quot;);<br />
+         salir = 1;<br />
+         break;<br />
+       case default :<br />
+         printf(&quot;Por favor, introduzca una opción válida.\n&quot;);<br />
+} while (break /= 1);<br />
+[/code]</p>
+<p>Aquí como véis, mientras el usuario no le de explícitamente a ir al case 4, el programa no saldrá del bucle principal.</p>
+<p><em>Ejemplo 2</em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 10;</p>
+<p>   /* do loop execution */<br />
+   do {<br />
+      printf(&quot;value of a: %d\n&quot;, a);<br />
+      a = a + 1;<br />
+   }while( a &lt; 20 );</p>
+<p>   return 0;<br />
+}<br />
+[/code]</p>
+<p>¡Esto devuelve lo mismo que el ejemplo anterior, con el while! Como podéis ver, se puede usar como si fuera un while, pero obliga a que haya al menos una iteración del bucle (una iteración es cada vez que el bloque de código de dentro del bloque se ejecuta).</p>
+<h4 id="senbuc6">Bucles for</h4>
+<p>Ok, este es EL BUCLE. El más complejo pero sin duda <strong>el más potente</strong>. Vamos a ver la sintaxis:</p>
+<p>[code lang="cpp"]<br />
+for ( init; condition; increment ) {<br />
+   statement(s);<br />
+}<br />
+[/code]</p>
+<p>Vamos a explicar esto un poco:</p>
+<ul>
+<li>1º Primero se hará una <strong>asignación</strong>, que corresponde al init. Aquí se suele usar el valor que va a cambiar durante nuestro bucle, nuestro flag.</li>
+<li>2º Después se realizará una <strong>condición</strong> (que no tiene que corresponder con la asignación anterior) y <strong>mientras esa condición sea cierta, el bucle se seguirá ejecutando.</strong></li>
+<li>3º Por último, se realizará una linea de código que se suele llamar<strong> incremento</strong>, ya que este tipo de bucles se pueden usar para eso.</li>
+</ul>
+<p>Vamos a ver el diagrama de flujo:</p>
+<p><a href="https://www.tutorialspoint.com/cprogramming/c_for_loop.htm"><em>Diagrama de flujo en los for</em></a></p>
+<p><img class="aligncenter size-medium wp-image-1654" src="{{ site.baseurl }}/assets/2016/10/xd1.png?w=214" alt="Diagrama de Flujo / For" width="214" height="300" /></p>
+<p>Esto se explica casi mejor con un ejemplo:</p>
+<p><em>Ejemplo</em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>int main () {</p>
+<p>   int a;</p>
+<p>   /* for loop execution */<br />
+   for( a = 10; a &lt; 20; a = a + 1 ){<br />
+      printf(&quot;value of a: %d\n&quot;, a);<br />
+   }</p>
+<p>   return 0;<br />
+}<br />
+[/code]</p>
+<p>Y esto devolverá nuestro clásico "value de a: 10, 11..."</p>
+<p>¿Qué vemos aquí? Está claro que en vez de hacer la <em>asignación</em> de la variable fuera, la hacemos dentro del bucle for (<strong>a = 10</strong>), después asignamos la <em>condición</em>, que te puedes fijar que es la misma que la del while y do.. while (<strong>a &lt; 20</strong>) y por último hacemos el <em>incremento</em> para poder avanzar por el bucle (<strong>a++, a = a+1</strong>).</p>
+<p>Y si es lo mismo que un while, ¿porqué no usamos while? La respuesta es que<strong> es más compacto y concentrado</strong>, y recuerda que se pueden hacer varias comprobaciones simultáneamente, podemos inicializar varios valores a la vez por lo que permite hacer que pase por muchas funciones de manera muy rápida, aparte de que es más bonito a la vista. Además, hay<strong> cosas que son bastante más fáciles de hacer con un for</strong>, creéme.</p>
+<h3 id="funciones">Funciones</h3>
+<p>Una función es un<strong> grupo de sentencias que hacen una tarea</strong>. Como te puedes haber percatado, todas las funciones de C tienen una función mínima obligatoria, <strong>main()</strong>, y en esta se ejecutarán el resto de funciones que hagamos fuera del main. Un buen detalle de diseño a la hora de crear una aplicación es<strong> ir asignando diferentes funciones a diferentes tareas</strong>, así quedando más organizado el código y hacer que se puedan hacer modificaciones o pruebas a una parte concreta de la aplicación sea más sencillo.</p>
+<p>Hay 2 cosas a tener en cuenta de las funciones:</p>
+<ul>
+<li>Las <strong>declaraciones</strong>: se refiere a la primera línea de la función, que dice el tipo de función, lo que devuelve la función (el tipo de return) y sus parámetros.</li>
+<li>Las <strong>definiciones</strong>: comentan el "cuerpo" de la función, además de incluir la declaración.</li>
+</ul>
+<p>Como habrás podido intuir, ¡ya hemos usado infinitas funciones durante este artículo! Desde nuestro colega <em>printf()</em>, <em>scanf()</em> o funciones algo más específicas como <em>strcat()</em> o <em>memcpy()</em>.<br />
+En C no hay verdadera distinción entre <strong>función, método, sub-rutina o procedimiento</strong>, ya que no existen los objetos en C.</p>
+<h4 id="funciones1">Sintaxis básica</h4>
+<p>Vimos antes que tenemos<strong> declaraciones y funciones</strong>, ¿verdad?</p>
+<p>Vamos a ver primero la<em><strong> definición</strong></em> de una función:</p>
+<p><em>Sintaxis</em></p>
+<p>[code lang="cpp"]<br />
+return_type function_name( parameter list ) {<br />
+   body of the function<br />
+}<br />
+[/code]</p>
+<p>Una definición de una función consiste de una cabecera de la función (<strong>header</strong>) y el cuerpo de la función (<strong>body</strong>).<br />
+Analizemos sus partes:</p>
+<ul>
+<li>El <strong>tipo de return</strong> es el tipo de dato que devuelve la función a través de un return. Si no se devuelve nada, usamos el keyword void.</li>
+<li>El <strong>nombre de la función</strong> es... su nombre. No hay que ser muy avispao pa darse cuenta -_-</li>
+<li>Los <strong>parámetros</strong> son moldes que le explican a la función que le van a llegar unos ciertos datos, con un tipo, orden y número determinado. Se pueden hacer funciones sin parámetros, independientes.</li>
+<li>El <strong>cuerpo</strong> de la función es el conjunto de sentencias que definen qué hace la función.</li>
+</ul>
+<p>Pongamos un ejemplo: la función<strong> max()</strong> coge dos parámetros <strong>num1 y num2</strong> y devuelve con return el <strong>mayor de los 2:</strong></p>
+<p><em>Ejemplo</em></p>
+<p>[code lang="cpp"]<br />
+/* function returning the max between two numbers */<br />
+int max(int num1, int num2) {</p>
+<p>   /* local variable declaration */<br />
+   int result;</p>
+<p>   if (num1 &gt; num2)<br />
+      result = num1;<br />
+   else<br />
+      result = num2;</p>
+<p>   return result;<br />
+}<br />
+[/code]</p>
+<p>Miremos ahora una <em><strong>declaración</strong></em>:</p>
+<p>[code lang="cpp"]<br />
+return_type function_name( parameter list );<br />
+[/code]</p>
+<p>En el ejemplo de arriba, cualquiera de las 2 siguientes lineas son correctas:</p>
+<p>[code lang="cpp"]<br />
+int max(int num1, int num2);<br />
+int max(int, int);<br />
+[/code]</p>
+<p>Esto ocurre porque <strong>para la declaración, no le importa cómo se llamen las funciones</strong>, solamente le importa saber que le van a llegar 2 variables de tipo int como argumentos.</p>
+<p>Ahora que hemos visto su estructura, ¿para qué queremos solo las declaraciones? Lo veremos más en conciencia más adelante, pero cuando tenemos una aplicación con varios archivos y <strong>queremos usar funciones de un archivo a otro</strong>, tenemos que hacer <strong>referencia a su cabecera</strong> para que sepa con qué tiene que trabajar la función. Esto se utiliza con los <strong>ficheros .h</strong>, que vienen de header, que indica que son ficheros que contienen las cabeceras del archivo .c asociado con el fin de que se pueda referenciar en otro archivo y entonces <strong>el compilador entiende qué le estás pidiendo</strong>.</p>
+<p>Bien, hemos visto lo aburrido de las funciones. Ahora, ¿<strong>cómo se usan</strong>? Hace falta hacer una llamada a la función para que haga la tarea que queremos. Cuando llamamos a una función, el control del programa pasa a suchodicha función, haciendo una tarea determinada hasta que llega al final de la función o se encuentra un return. Para <strong>llamarla explícitamente</strong>, solamente es necesario los parámetros necesarios junto con el nombre de la función. Si la función devuelve un valor, puedes hacer una asignación con la función para dar el resultado de la función a una variable de la función padre.</p>
+<p><em>Ejemplo</em></p>
+<p>[code language="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>/* function declaration */<br />
+int max(int num1, int num2);</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 100;<br />
+   int b = 200;<br />
+   int ret;</p>
+<p>   /* calling a function to get max value */<br />
+   ret = max(a, b);</p>
+<p>   printf( &quot;Max value is : %d\n&quot;, ret );</p>
+<p>   return 0;<br />
+}</p>
+<p>/* function returning the max between two numbers */<br />
+int max(int num1, int num2) {</p>
+<p>   /* local variable declaration */<br />
+   int result;</p>
+<p>   if (num1 &gt; num2)<br />
+      result = num1;<br />
+   else<br />
+      result = num2;</p>
+<p>   return result;<br />
+}<br />
+[/code]</p>
+<p>Como resultado, da "Max Value: 200".</p>
+<h4 id="funciones2">Argumentos de la función</h4>
+<p>Según cómo le pasemos los argumentos a la función, hay dos tipos de funciones: funciones que hacen una llamada por valor, y una llamada por referencia.</p>
+<p>La llamada por valor consiste en los tipos de funciones que hemos estado viendo hasta ahora: cogen de una variable el valor asignado a ella y lo utilizan, pero no pueden modificarlo. Para devolver un valor, hace falta devolverlo mediante returns.</p>
+<p><em>Ejemplo</em></p>
+<p>[code language="cpp"]<br />
+void swap(int x, int y) { // Esto sería la definición de la función.</p>
+<p>   int temp;</p>
+<p>   temp = x; /* save the value of x */<br />
+   x = y;    /* put y into x */<br />
+   y = temp; /* put temp into y */</p>
+<p>   return;<br />
+}</p>
+<p>--</p>
+<p>#include &lt;stdio.h&gt; </p>
+<p>/* function declaration */<br />
+void swap(int x, int y); // Suponiendo que swap está en otro archivo, haría falta declararlo</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 100;<br />
+   int b = 200;</p>
+<p>   printf(&quot;Before swap, value of a : %d\n&quot;, a );<br />
+   printf(&quot;Before swap, value of b : %d\n&quot;, b );</p>
+<p>   /* calling a function to swap the values */<br />
+   swap(a, b);</p>
+<p>   printf(&quot;After swap, value of a : %d\n&quot;, a );<br />
+   printf(&quot;After swap, value of b : %d\n&quot;, b );</p>
+<p>   return 0;<br />
+}</p>
+<p>/*<br />
+RESULTADO<br />
+Before swap, value of a :100<br />
+Before swap, value of b :200<br />
+After swap, value of a :100<br />
+After swap, value of b :200<br />
+*/<br />
+[/code]</p>
+<p>Aquí se ve que aunque los valores a y b se han alterado dentro de la función swap, no se ha alterado en la función principal, ya que pasando a la función los argumentos de esa manera ("prestando" los valores, pero no dando la función de verdad) no se puede modificar los valores de la función principal.</p>
+<p>Es como si la función cuando se le llama de esta forma, "leyera" las variables y creara una copia dentro de la función, que se corresponde a los nombres que le damos a los argumentos en la definición de la variable, que aunque se llamen igual son distintas. Por lo tanto, aunque modifiquemos los valores de las variables "copiadas" dentro de la función, al ser distintas, no se van a modificar las variables originales que han sido pasadas como argumentos a la función.</p>
+<p>¿Qué es la llamada por referencia, entonces? Necesitamos punteros, así que si no sabéis de qué estoy hablando, bajad un poco para leeros la zona de punteros y volved aquí un poco más adelante.</p>
+<p>Ya avisados, ¡continuamos! Aquí en vez de pasarse el valor de la variable como argumento, se pasa la dirección de la variable como argumento (con nuestro amigo el &amp;). Dentro de la función, el argumento se usa para acceder al valor que está en la dirección de memoria proporcionada. Por lo tanto, los cambios que se hagan a los argumentos, al hacerse con la misma variable, se conservarán fuera de la función. Por lo tanto, para pasar un valor como referencia, necesitamos argumentos puntero y llamarlos con la memoria. Recordad: &amp; =&gt; DATO =&gt; *:</p>
+<p>[code language="cpp"]<br />
+/* function definition to swap the values */<br />
+void swap(int *x, int *y) {</p>
+<p>   int temp;<br />
+   temp = *x;    /* save the value at address x */<br />
+   *x = *y;      /* put y into x */<br />
+   *y = temp;    /* put temp into y */</p>
+<p>   return;<br />
+}<br />
+#include &lt;stdio.h&gt;</p>
+<p>/* function declaration */<br />
+void swap(int *x, int *y);</p>
+<p>int main () {</p>
+<p>   /* local variable definition */<br />
+   int a = 100;<br />
+   int b = 200;</p>
+<p>   printf(&quot;Before swap, value of a : %d\n&quot;, a );<br />
+   printf(&quot;Before swap, value of b : %d\n&quot;, b );</p>
+<p>   /* calling a function to swap the values.<br />
+      * &amp;a indicates pointer to a ie. address of variable a and<br />
+      * &amp;b indicates pointer to b ie. address of variable b.<br />
+   */<br />
+   swap(&amp;a, &amp;b);</p>
+<p>   printf(&quot;After swap, value of a : %d\n&quot;, a );<br />
+   printf(&quot;After swap, value of b : %d\n&quot;, b );</p>
+<p>   return 0;<br />
+}<br />
+/*<br />
+RESULTADO<br />
+Before swap, value of a :100<br />
+Before swap, value of b :200<br />
+After swap, value of a :100<br />
+After swap, value of b :200<br />
+*/<br />
+[/code]</p>
+<p>Como véis en el ejemplo, siendo más o menos la misma idea de código, usando llamadas memoria y argumentos puntero podemos modificar el valor de una variable de la función padre en una función hija. Esto es fundamental para el desarollo de programas más complejos.</p>
+<h4 id="funciones3">Alcance de una función: el scope</h4>
+<p>El alcance o scope en cualquier lenguaje de programación es una región del programa donde una variable puede tener existencia y fuera de esa región no puede ser accedida. Hay 3 lugares donde se pueden declarar variables en C:</p>
+<ul>
+<li>Variables locales: dentro de funciones o bloques</li>
+<li>Variables globales: fuera de cualquier función</li>
+<li>Variables formales: declaradas en la definición de funciones</li>
+</ul>
+<p>Las variables locales, como hemos dicho antes, se encuentran dentro de bloques y solamente pueden ser usadas por sentencias que están dentro de estos bloques. Las funciones fuera de este bloque no conocen ni siquiera la existencia de esta variable.</p>
+<p><em> Ejemplo </em></p>
+<p>[code language="cpp"];<br />
+#include &lt;stdio.h&gt;<br />
+int main () {</p>
+<p>  /* local variable declaration */<br />
+  int a, b;<br />
+  int c;</p>
+<p>  /* actual initialization */<br />
+  a = 10;<br />
+  b = 20;<br />
+  c = a + b;</p>
+<p>  printf (&quot;value of a = %d, b = %d and c = %d\n&quot;, a, b, c);</p>
+<p>  return 0;<br />
+}<br />
+[/code]</p>
+<p>Como se puede apreciar en el código de arriba, las variables a,b y c son locales para la función main().</p>
+<p>Las variables globales se suelen definir fuera de las funciones, al principio del programa. ¿Recordáis cuando os hablé de las macros? Puede parecer lo mismo, pero al contrario de lo primero, las variables globales sí que se modifican durante el tiempo de ejecución del programa, mientras como hemos dicho las macros son siempre constantes.</p>
+<p><em> Ejemplo </em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>/* global variable declaration */<br />
+int g;</p>
+<p>int main () {</p>
+<p>  /* local variable declaration */<br />
+  int a, b;</p>
+<p>  /* actual initialization */<br />
+  a = 10;<br />
+  b = 20;<br />
+  g = a + b;</p>
+<p>  printf (&quot;value of a = %d, b = %d and g = %d\n&quot;, a, b, g);</p>
+<p>  return 0;<br />
+}<br />
+[/code]</p>
+<p>También podemos combinar variables globales y locales, pero en el caso de tener 2 con el mismo nombre se le dará prioridad a la variable local.</p>
+<p>Por último tenemos las variables formales, que funcionan como variables locales, y por lo tanto también toman preferencia contra las variables globales.</p>
+<p><em> Ejemplo </em></p>
+<p>[code lang="cpp"]<br />
+#include &lt;stdio.h&gt;</p>
+<p>/* global variable declaration */<br />
+int a = 20;</p>
+<p>int main () {</p>
+<p>  /* local variable declaration in main function */<br />
+  int a = 10;<br />
+  int b = 20;<br />
+  int c = 0;</p>
+<p>  printf (&quot;value of a in main() = %d\n&quot;,  a);<br />
+  c = sum( a, b);<br />
+  printf (&quot;value of c in main() = %d\n&quot;,  c);</p>
+<p>  return 0;<br />
+}</p>
+<p>/* function to add two integers */<br />
+int sum(int a, int b) {</p>
+<p>   printf (&quot;value of a in sum() = %d\n&quot;,  a);<br />
+   printf (&quot;value of b in sum() = %d\n&quot;,  b);</p>
+<p>   return a + b;<br />
+}<br />
+/*<br />
+value of a in main() = 10<br />
+value of a in sum() = 10<br />
+value of b in sum() = 20<br />
+value of c in main() = 30<br />
+*/<br />
+[/code]</p>
+<p>Un último detalle, mientras que las variables locales no se inicializan, las variables globales siempre se inicializan automáticamente con FALSE, dependiendo del formato con 0, NULL o '\0'.</p>
+<h3 id="arrays">Tablas, o arrays</h3>
+<p>Un array es un tipo de estructura de dato que almacena una cierta cantidad de elementos del mismo tipo. Aunque se usa para almacenamiento de datos, es mejor pensarlo como almacenamiento de variables del mismo tipo. En vez de declarar N variables como tabla1, tabla2, declaramos un array llamado tabla y usamos tabla[1], tabla[2], etc para representar las variables indiviudales. Cada elemento del array se accede por un índice (el número dentro del corchete).</p>
+<p>Algo que será útil más adelante: todos los arrays consisten de direcciones de memoria contiguas, siendo la dirección de memoria más pequeña el primer elemento y la mayor el último.</p>
+<p>Para declarar un array, la sintaxis es la siguiente: </p>
+<p>[code lang="cpp"]<br />
+type arrayNombre [tamañoArray];<br />
+[/code]</p>
+<p>Esto es el array básico, o un array unidimensional, siendo tamañoArray un entero mayor que 0 y type cualquier tipo de dato válido en C.</p>
+<p><em> <u> Ejemplo: array de 10 elementos</u></em><br />
+[code lang="cpp"]<br />
+double balance[10];<br />
+[/code]</p>
+<p>Los arrays se inicializan de manera algo distinta:</p>
+<li>Puedes declarar primero el array e inicializar elemento a elemento (bastante tedioso, seamos honestos)</li>
+<li>O bien hacer la inicialización junto a la declaración de la siguiente manera: </li>
+<p>[code lang="cpp"]<br />
+double balance[5] = {1000.0, 2.0, 3.4, 7.0, 50.0};<br />
+[/code]</p>
+<p>Aquí podéis observar algunas cosas:</p>
+<li>El número de valores entre llaves no puede ser mayor que el número de elementos que declaramos para el array entre corchetes.</li>
+<li>Puedes omitir el tamaño del array (el 5 en el caso de arriba) si haces la inicialización justo al lado, ya que C es capaz de darse cuenta de que hay 5 elementos y por tanto asignará 5 variables al array almacenando los elementos.</li>
+<li>Para asignar elemento a elemento es exactamente igual que si fuera una variable independiente, solamente que tenemos que indicar a qué elemento del array nos referimos, y por lo tanto lo tenenemos que referenciar mediante su índice</li>
+<p><em> <u> Ejemplo: asignación de elementos de un array </u></em><br />
+[code lang="cpp"]<br />
+balance[4] = 50.0;<br />
+[/code]</p>
+<p>¡Cuidado aquí! Como puedes haber visto, he puesto el índice 4 pero estoy escribiendo en el quinto elemento del array. Eso es porque en C los índices comienzan con 0 como el 1er índice, así que el 1er elemento será el elemento de índice 0, el 2º elemento el elemento de índice 1, etc. </p>
+<p>Aparte de esto, existen varias cosas relacionadas con los arrays:</p>
+<li>Arrays multidimensionales, en el que especificas 2 "dimensiones" del array creando una tabla de filas y columnas en el caso de 2 dimensiones y más si pasas a 3 o a N dimensiones</li>
+<li>Puedes tanto pasar arrays a funciones usando un puntero (soonTM) pasando el nombre del array entero como variable, como devolver arrays en funciones.</li>
+<li>Por lógica con lo de arriba, también existe por sí mismo un puntero a un array.</li>
+<p>-- EN CONSTRUCCIÓN --</p>
+<p>Nada que ver por aquí<br />
+Nada que ver por aquí<br />
+Nada que ver por aquí</p>
+<p>-- EN CONSTRUCCIÓN --</p>
+<h4 id="misc3">Código ASCII</h4>
+<p>Un pequeño detalle de C, es que es compatible con el código ASCII, así que puedes imprimir cualquier caracter soportado por este convenio. <a href="https://www.cs.tut.fi/~jkorpela/ucs.html8">Aquí</a> se encuentra una tabla de todos los caracteres admitidos en C.</p>
+<p><em> <u> Ejemplo </u></em></p>
+<p>[code language="cpp"]<br />
+#include &lt;stdio.h&gt;<br />
+int main() {<br />
+  printf (&quot;\u00f1o\n&quot;); // OUTPUT: año<br />
+  return 0;<br />
+}<br />
+[/code]</p>
+<p>Como puedes ser, la ñ es \u00f1 y para poder escribirla es escribirle dentro del mismo printf el código ASCII.</p>

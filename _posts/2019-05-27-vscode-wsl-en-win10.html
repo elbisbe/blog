@@ -1,0 +1,64 @@
+---
+layout: post
+title: VSCode &amp; WSL en Win10
+date: 2019-05-27 09:26:31.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Ubuntu / Linux
+- Windows
+- WSL
+tags: []
+meta:
+  enclosure: |
+    https://giant.gfycat.com/SpanishAromaticBrontosaurus.webm
+    1368689
+    video/webm
+  timeline_notification: '1558949194'
+  _publicize_job_id: '31224339295'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:54:"https://twitter.com/elbisbe/status/1132941152582275072";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _oembed_63f970797a91237e0cc0aa4f4da635c6: "{{unknown}}"
+  _last_editor_used_jetpack: block-editor
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2019/05/27/vscode-wsl-en-win10/"
+---
+<p><!-- wp:paragraph --></p>
+<p>Por motivos del azar he tenido que trabajar con archivos de texto plano de varios MB de tamaño  y ni Notepad++ ni nuestro abandonware favorito Sublime han podido dar la talla, y decidí probar VSCode. TL;DR funciona espectacular para cualquier cosa que se os ocurra, y cuando sea mayor y un poco menos terrible con la gestión de mi tiempo libre estudiaré sus virtudes y sus grandezas y las pondré por aquí.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Hoy voy a hablar de un caso muy bonito: el poder tener <strong>en la terminal de VSCode una sesión de WSL</strong> para que podamos ahí hacer nuestros CMakes y nuestras cosas chulis de Bash pero en el entorno de Windows 10.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Esto que voy a contar <a href="https://code.visualstudio.com/docs/remote/wsl">viene perfectamente explicado en la siguiente página</a> pero para los no excesivamente dichos en inglés aquí os va un resumen corto:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list {"ordered":true} --></p>
+<ol>
+<li>Tened <a href="https://docs.microsoft.com/es-es/windows/wsl/install-win10">WSL descargado y configurado</a> (<em>duh</em>). Tened cuidado si tenéis varias distros, ya que se usará la predeterminada.</li>
+<li>Os hace falta también <a href="https://code.visualstudio.com/insiders/">VSCode Insiders</a>, la versión beta de VSCode pero no os preocupéis que trabaja en paralelo a VSCode, con distintas extensiones y configuración así que vuestras cosas de VSCode se quedan sin tocar. (añadid Insiders al PATH durante la instalación que después se hace más sencillo todo)</li>
+<li>Instalad la extensión <a href="https://aka.ms/vscode-remote/download/extension">Remote Development</a> en Insiders (tened cuidado que el navegador os va a abrir solo seguramente VSCode normal, y que esta extensión solo funciona en Insiders)</li>
+<li>Abrid VSCode Insiders, váis al terminal y al workspace que queráis usar. Ahí introducís <code>wsl</code> para que se ejecute el subsistema y ya en él ponéis <code>code-insiders .</code>(importante el punto del final, indica que se abra en ese working directory). Si todo va bien os va a ejecutar una nueva ventana donde tendréis en remoto el sistema WSL en el workspace que habéis mandao, y tenéis todo listo para rockear. Si code-insiders no os funciona en el Terminal, es que no me habéis hecho caso e Insiders no está en el PATH. Lo podéis arreglar invocando con F1 al buscador y abriendo una nueva ventana de Remote-WSL, pero es mucho menos estiloso. <a href="https://giant.gfycat.com/SpanishAromaticBrontosaurus.webm">Os dejo un GIF muy riquín donde podéis ver este paso. </a></li>
+</ol>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>¡Y ya estaría! Tenéis todas las características de VSCode en Win 10 pero en un entorno de desarollo local de Linux, ¡qué más se le puede pedir a la vida!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Hay algunos ligeros issues puestos en la página de WSL con ciertas aplicaciones (Git de vez en cuando se marea, Node.js + Firebase le cuesta arrancar, etc) pero para el 97% de los casos debería iros perfecto. Para más detalle mirad la documentación oficial. Para volver de la sesión en remoto, solamente teneís que abrir una nueva ventana de Insiders (CTRL+Shift+N de toda la vida) y ya estáis fuera de WSL, aunque me imagino que si no usabais Insiders antes simplemente abriréis Code normal. Además, como en Code cuando abráis Insiders de nuevo abre la última ventana que habéis cerrado, así que suele cargar vuestra sesión de WSL en remoto para que sea totalmente <em>seamless</em> la experiencia. ¡GUD!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Esto es todo por hoy!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>EDIT: para mi yo futuro, en WSL la ruta de acceso a los archivos de Windows está en $/mnt. You're welcome.</p>
+<p><!-- /wp:paragraph --></p>

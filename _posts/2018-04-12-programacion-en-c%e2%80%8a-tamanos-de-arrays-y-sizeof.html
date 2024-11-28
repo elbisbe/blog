@@ -1,0 +1,34 @@
+---
+layout: post
+title: Programación en C  | Tamaños de arrays y sizeof()
+date: 2018-04-12 20:45:23.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Pro-tips
+- Teleco Toolbox
+tags: []
+meta:
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _publicize_done_13615674: '1'
+  geo_public: '0'
+  timeline_notification: '1523565926'
+  amp_status: enabled
+  _publicize_job_id: '16736416405'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/984532975831445504";}}
+  _edit_last: '31203507'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2018/04/12/programacion-en-c%e2%80%8a-tamanos-de-arrays-y-sizeof/"
+---
+<p id="9446" class="graf graf--p graf-after--h3">¿Nunca te has preguntado porqué main está definido como "int main(int argc, char** argv)" ? Es decir, si nos dan directamente un array con los valores de los argumentos, ¿no es más sencillo correr un bucle y usar un sizeof como delimitador?</p>
+<p id="f5ee" class="graf graf--p graf-after--p">¡Pues resulta que no! Al parecer sizeof solo funciona para encontrar la longitud del array si lo aplicas al array original, pero sin embargo si intentamos hacer el sizeof de un puntero, sizeof devolverá el tamaño del puntero y no del array. Por lo tanto, ¡cuando pedimos la longitud del array como argumento (argc) es necesario y no redundante!</p>
+<p id="d44d" class="graf graf--p graf-after--p graf--trailing">Sin embargo, ya que argv termina convenientemente en un puntero a NULL se puede jugar un poco alrededor de esto, pero de todas maneras no es buena praxis, siendo lo estándar llevar en otra variable o en una estructura una indicación del tamaño de un array decaido a puntero.</p>

@@ -1,0 +1,54 @@
+---
+layout: post
+title: Cómo generar una red Wi-Fi en tu portatil para Reverse Tethering
+date: 2016-10-25 08:53:50.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Instalación
+- Windows
+tags: []
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: "-1"
+  _publicize_job_id: '28208833756'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/790838800905740288";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  _edit_last: '31203507'
+  geo_public: '0'
+  _wpas_skip_13558039: '1'
+  _wpas_skip_1128139: '1'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2016/10/25/como-generar-una-red-wi-fi-en-tu-portatil-para-reverse-tethering/"
+---
+<p>Ok, supongamos que eres una persona desgraciada. Tienes un Windows Phone, y obviamente Microsoft es incapaz de hacer un protocolo TTLS decente para poderse conectarse al Wi-Fi de la universidad. Obviamente, tienes que seguir compartiendo tus videos de gatos (¿<em>eso sigue existiendo?</em>) por Whatsapp y aportar a tu grupo de Skype favorito con frases tan impactantes como <em>lol</em> o <em>wtf</em>. Entonces descubres el horror: te queda un dia entero y te has quedado sin tarifa de 3G. ¿Qué haces ahora?</p>
+<p><!--more--></p>
+<p>Necesitas un ordenador con Windows 7+ (seguramente lo tengas, a no ser que uses un Mac sin BootCamp que entonces tu alma no tiene salvación) y permisos de administrador (si usas un ordenador de la uni, ponle morritos a tu IT favorito para que te deje un ordenador con permisos), y probablemente un<a href="https://www.google.es/search?q=dongle+wifi&amp;oq=dongle+wifi&amp;aqs=chrome..69i57j0l5.1064j0j4&amp;sourceid=chrome&amp;ie=UTF-8"> dongle Wi-Fi</a> por USB.</p>
+<p>Una vez que tenemos todo lo anterior, vamos al Command Prompt y ponemos <em>NETSH WLAN show drivers:</em></p>
+<p><img class="aligncenter size-medium wp-image-1696" src="{{ site.baseurl }}/assets/2016/10/11.png?w=300" alt="1" width="300" height="227" /></p>
+<p>Os tenéis que fijar en la línea resaltada, <em><strong>Hosted network supported: Yes</strong>. </em>Si eso pone no, entonces vuestro adaptador<strong> no soporta reversión de red</strong> (actuar como router) y tendréis que usar otro, por eso probablemente usando un <strong>dongle Wi-Fi</strong> acertáis porque la mayoría lo permiten.</p>
+<p>Pasado este paso, tenemos que descargarnos e instalar <a href="https://virtualrouter.codeplex.com/">Virtual Router</a>, una herramienta que realmente no hace falta porque todo se puede hacer por linea de comandos <strong>pero a quién no le gusta una bonita interfaz verdad<em> </em></strong>así que la usaremos.</p>
+<p>Una vez instalada y lista, a mí la primera vez me crasheó hasta que reinicié la máquina así que quedáis avisados. Esta es la interfaz:</p>
+<p>&nbsp;</p>
+<p><img class="aligncenter size-medium wp-image-1707" src="{{ site.baseurl }}/assets/2016/10/21.png?w=300" alt="2" width="300" height="244" /></p>
+<p>No hay que ser un lince para darse cuenta que tiene muy pocos parámetros:</p>
+<p><strong>Network Name (SSID):</strong> el nombre de la Wi-Fi que queremos generar</p>
+<p><strong>Password</strong>: la contraseña, es obligatoria y mínimo de 8 caracteres. Como véis no me como excesivamente la cabeza</p>
+<p><strong>Shared Connection: </strong>es la parte más interesante, nos permite definir qué queremos compartir de la red actual con la red que vamos a crear. Como queremos hacer reverse Tethering, habrá que compartir Internet, por lo tanto tiraremos de la Wi-Fi que ya está conectada a la universidad.</p>
+<p>Le damos a <strong>Start Virtual Router</strong>, esperamos un poquete, y voliá! Se crea una red WPA bastante sencilla que genera de pocos a 0 problemas de autenticación y ya estamos conectados a Internet.</p>
+<p>¡Cuidado! La siguiente vez que uses el ordenador, puede que ponga "Cannot manage Virtual Router, the service is not running". La solución es ir al administrador de tareas, a la pestaña "Servicios" y activar el servicio "Virtual Router".</p>
+<p><img class="size-medium wp-image-1723 aligncenter" src="{{ site.baseurl }}/assets/2016/10/31.png?w=300" alt="3" width="300" height="139" /></p>
+<p style="text-align:center;"><em>Os tiene que quedar algo tal que así, un servicio Virtual Router en Running</em></p>
+<p>Ya satisfecha vuestra demanda de <strong>videos de gatos</strong> podéis volver a vuestro día normal, y esta acción heroica os hace sacar un 5 en ese examen de circuitos el cual te habías tirado la madrugada anterior estudiando.</p>
+<p><strong>La vida puede ser maravillosa, ¿verdad?</strong></p>
+<p>E</p>

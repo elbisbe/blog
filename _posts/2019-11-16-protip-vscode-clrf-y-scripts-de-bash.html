@@ -1,0 +1,79 @@
+---
+layout: post
+title: 'Protip: vscode, CLRF y scripts de Bash'
+date: 2019-11-16 08:54:44.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Sin categoría
+tags: []
+meta:
+  spay_email: ''
+  timeline_notification: '1573894488'
+  _publicize_job_id: '37477290052'
+  _coblocks_attr: ''
+  _coblocks_dimensions: ''
+  _coblocks_responsive_height: ''
+  _coblocks_accordion_ie_support: ''
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:54:"https://twitter.com/elbisbe/status/1195626263110717440";}}
+  _publicize_done_13615674: '1'
+  advanced_seo_description: ''
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+  amp_status: ''
+  _oembed_3bce62cf5253ea68b420da87a74bb218: <div class="embed-reddit">    <blockquote
+    class="reddit-card" >      <a href="https://www.reddit.com/r/HyperV/comments/9b7kil/hyperv_no_longer_supports_remotefx_3d/?ref_source=embed&amp;ref=share">Hyper-V
+    no longer supports RemoteFX 3D???</a> from      <a href="https://www.reddit.com/r/HyperV/">HyperV</a>    </blockquote>    <script
+    async src="https://embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script></div>
+  _oembed_time_3bce62cf5253ea68b420da87a74bb218: '1583021689'
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2019/11/16/protip-vscode-clrf-y-scripts-de-bash/"
+---
+<p><!-- wp:paragraph --></p>
+<p>¡Hola!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>¿Has intentado alguna vez hacer un export en un script de bash? ¿No te funciona?</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>¿Haces "export" en el terminal y te sale algo como esto?</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code>$ export
+-- LO QUE SALE
+"eclare -x TEST1="mequieropegaruntiro
+"eclare -x TEST2="mequieropegarotrotiro
+-- LO QUE DEBERIA SALIR
+declare -x TEST1="mequieropegaruntiro"
+declare -x TEST2="mequieropegarotrotiro"</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p> ¡No te preocupes! Soy tú 3 horas en el futuro, con la solución en la mano.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Resulta que tu editor favorito de texto (en mi caso vscode) pone a default la línea nueva como CRLF</strong> (Carriage Return, vuelve al comienzo de la línea + Line Feed, salta a la siguiente línea). PUES NO LE GUSTA CR EN LOS SCRIPTS MUCHO A BASH, FÍJATE TÚ. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><em>¿Solución?</em> <strong>Asegurarse que tu editor sólo pone LF en línea nueva ya sea viendo estos caracteres en el editor (eso es para tí enfermo del Notepad++) o en vscode selecciona la opción de LF abajo a la derecha, según relata la siguiente imagen</strong>:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"align":"center","id":1898,"sizeSlug":"large"} --></p>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="{{ site.baseurl }}/assets/2019/11/image.png?w=274" alt="" class="wp-image-1898" /><br />
+<figcaption>tilt over 9000</figcaption>
+</figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Si he llegado a tiempo, estás bailando de alegria y llenos de ilusión, y disfrutarás feliz del fin de semana. O puedes haber llegado tarde. Bienvenido al club.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>¡Nos vemos!</p>
+<p><!-- /wp:paragraph --></p>

@@ -1,0 +1,36 @@
+---
+layout: post
+title: "¿Dónde está /root en el subsistema de Linux de Windows 10?"
+date: 2017-09-18 23:26:01.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Pro-tips
+- Ubuntu / Linux
+- Windows
+tags: []
+meta:
+  _edit_last: '31203507'
+  geo_public: '0'
+  _publicize_job_id: '9427084176'
+  _publicize_done_external: a:1:{s:7:"twitter";a:1:{i:1128139;s:53:"https://twitter.com/elbisbe/status/909921502602051584";}}
+  _publicize_done_13615674: '1'
+  _wpas_done_1128139: '1'
+  publicize_twitter_user: elbisbe
+author:
+  login: elbisbe1
+  email: ernestoluisbisbe@gmail.com
+  display_name: elbisbe
+  first_name: Ernesto
+  last_name: Luis Bisbé
+permalink: "/2017/09/18/donde-esta-root-en-el-subsistema-de-linux-de-windows-10/"
+---
+<p>Siguiendo con <a href="http://wp.me/p76Gh4-sN">el repost que os puse el otro día sobre instalar Ubuntu en Windows 10,</a> hoy os traigo un truco bastante sencillo para ubicarse y navegar con el explorador de Windows: saber donde está root!</p>
+<p><a href="https://askubuntu.com/questions/759880/where-is-the-ubuntu-file-system-root-directory-in-windows-nt-subsystem-and-vicehttps://askubuntu.com/questions/759880/where-is-the-ubuntu-file-system-root-directory-in-windows-nt-subsystem-and-vice">Según este rico y nutritivo artículo de askubuntu, </a>se ve que root se encuentra en</p>
+<pre class="lang-bsh prettyprint prettyprinted"><code><span class="pln">C</span><span class="pun">:</span><span class="pln">\Users\Username\AppData\Local\Lxss\rootfs</span></code></pre>
+<p>cambiando "Username" por vuestro usuario obviamente.</p>
+<p>Así podéis mover carpetas y archivos como si estuviérais en el Windows clásico y después interactuar con ello dentro de Bash.</p>
+<p>Saludos!</p>
