@@ -1,0 +1,128 @@
+---
+layout: post
+title: Apache Kafka + Kafka Connect + Emulador de Pub/Sub
+date: 2023-09-25 09:46:08.000000000 +00:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Docker
+- Kafka
+- WSL
+tags: []
+permalink: "/2023/09/25/apache-kafka-kafka-connect-emulador-de-pub-sub/"
+---
+<p><!-- wp:paragraph --></p>
+<p>Uh... ¿hay alguien aquí? Bueno, al menos soy consistente (no escribiendo). Bienvenidos de vuelta a otro post donde hablo un poco de los problemas que me voy encontrando y de cómo los voy solucionando. <br />Hoy os traigo un problema que me encontré probando una solución local para probar enviar eventos desde un bus de Kafka a un emulador de Google Pub/Sub con el mínimo dolor posible.</p>
+<p>Empecemos por lo básico:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:list --></p>
+<ul><!-- wp:list-item --></p>
+<li><strong>Apache Kafka</strong>: Tecnología de Apache que consiste en una cola de mensajes asíncrona. Tienes Producers, que envían mensajes a una cola o Topic, y un Consumer, que lee de manera ordenada y asíncrona el Topic. El Topic está ordenado por particiones y offsets y hay algunas consideraciones más, pero esto es lo fundamental.</li>
+<p><!-- /wp:list-item --></p>
+<p><!-- wp:list-item --></p>
+<li><strong>Kafka Connect</strong>: Una herramienta para enviar datos desde y hacia Kafka desde sistemas externos. Hay versiones opensource pero yo he trabajado solo con la solución de Confluence, que es quien comercializa soluciones de Kafka para empresas (dando ACLs y cositas varias). Funciona con un motor principal al que se le añaden microaplicaciones hechas en Java que hacen tareas en concreto.</li>
+<p><!-- /wp:list-item --></p>
+<p><!-- wp:list-item --></p>
+<li><strong>Google Pub/Sub</strong>: Otra tecnología de cola de mensajes asíncrona. Tienes Publishers que envían información a un Topic y un Subscriber que lee mensajes del Topic. Parecido, ¿eh? Hay más diferencias pero honestamente no controlo mucho sobre ellas ni son importantes para este post. </li>
+<p><!-- /wp:list-item --></ul>
+<p><!-- /wp:list --></p>
+<p><!-- wp:paragraph --></p>
+<p>Okay, queremos conectar los 3 sistemas, y además en local porque somos un poco masocas. Yo ya tengo configurado un entorno en Docker que me levanta un broker de Kafka y un Kafka Connect (algún día, por 2030, os hablaré de mi entorno de WSL + Docker sin Docker Desktop porque es el orgullo de mis amores). Por lo tanto, nos hace falta montar algo para emular un Pub/Sub. Además, necesitamos alguna manera de poder interaccionar con el sistema emulado. </p>
+<p>Con diferencia de la solución de Apache, Pub/Sub está pensado para ser puramente cloud, por lo que no es tan sencillo como montarse un on-promise en local y ya. Hay alguien en Google que me tiene aprecio y ha publicado amablemente un emulador para el Pub/Sub integrado en medio de su suite de utilidades.<br />Como entenderéis, como loco de Docker, paso de instalar a mano y me voy a buscar la vida para montarme una imagen con las utilidades. Afortunadamente, Google nos proporciona la imagen ya hecha.</p>
+<p>Por otro lado, el cliente consiste en unas utilidades que dejó Google en un repo de GitHub para interactuar con el emulador. Samaritanos también han hecho una imagen de estas utilidades, pero con el ligero detalle de que están bastante desactualizadas, así que tuve que hacerme un Dockerfile para ponerlo todo un poco al día.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>Aquí tenéis lo que hace falta añadir a un docker-compose.yml:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"yaml","firstLineNumber":"5"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">  pubsub-client:
+    image: pubsub-python-client:1.0
+    container_name: pubsub-client
+    links:
+      - "pubsub-emulator"
+    environment:
+      - "PUBSUB_PROJECT_ID=test-project"
+      - "PUBSUB_EMULATOR_HOST=pubsub-emulator:8538"
+    #command: publisher.py test-project create testTopic
+    tty: true
+  pubsub-emulator:
+    image: gcr.io/google.com/cloudsdktool/google-cloud-cli:latest
+    container_name: pubsub-emulator
+    ports:
+      - "8538:8538"
+    command: gcloud beta emulators pubsub start --host-port=0.0.0.0:8538</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Y aquí el Dockerfile para el pubsub-python-client:1.0:</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"yaml","firstLineNumber":"5"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">FROM nightfury1204/alpine-curl:latest
+RUN /bin/sh
+ENV ALPINE_VERSION=3.7
+ENV PACKAGES="dumb-init	musl	libc6-compat	linux-headers	build-base	bash	git	ca-certificates	python3	python3-dev"
+RUN /bin/sh -c echo   &amp;&amp; echo "http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/testing" &gt; /etc/apk/repositories   &amp;&amp; echo "http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/community" &gt;&gt; /etc/apk/repositories   &amp;&amp; echo "http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/main" &gt;&gt; /etc/apk/repositories   &amp;&amp; apk add --no-cache $PACKAGES ||     (sed -i -e 's/dl-cdn/dl-4/g' /etc/apk/repositories &amp;&amp; apk add --no-cache $PACKAGES)   &amp;&amp; echo "http://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/main/" &gt; /etc/apk/repositories   &amp;&amp; if [[ ! -e /usr/bin/python ]];        then ln -sf /usr/bin/python3 /usr/bin/python; fi   &amp;&amp; if [[ ! -e /usr/bin/python-config ]]; then ln -sf /usr/bin/python3-config /usr/bin/python-config; fi   &amp;&amp; if [[ ! -e /usr/bin/pydoc ]];         then ln -sf /usr/bin/pydoc3 /usr/bin/pydoc; fi   &amp;&amp; if [[ ! -e /usr/bin/easy_install ]];  then ln -sf $(ls /usr/bin/easy_install*) /usr/bin/easy_install; fi   &amp;&amp; easy_install pip   &amp;&amp; pip install --upgrade pip   &amp;&amp; if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3 /usr/bin/pip; fi
+ENTRYPOINT ["/usr/bin/dumb-init"]
+RUN "python"
+RUN apk add git
+RUN git clone https://github.com/googleapis/python-pubsub
+WORKDIR /python-pubsub/
+RUN git checkout tags/v2.12.1 -b current
+WORKDIR /python-pubsub/samples/snippets
+RUN pwd
+RUN ls
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>¿Okay, pues listo, no? Levantamos el bus, el Connect, el cliente y el emulador, creamos topics en los dos buses, enchufamos eventos al bus y creamos un conector para enviarlos a Pub/Sub. <br />Pues no va. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><strong>Okay, ¿cuál es el problema? </strong>Resulta que el emulador es bastante especialito con cómo quiere recibir los eventos, y el conector también se las trae. Primero, el conector de base no admite el hecho de que no haya autentificación (lo cual hace falta para enviar eventos al emulador). Segundo, el emulador hace un handshake SSL incompatible con el sistema cloud (what. the. fuck.) por lo que tienes que establecer un canal de comunicaciones entre el cliente y el emulador sin cifrar, lo cual obviamente tampoco soporta el conector.<br /><a href="https://cloud.google.com/pubsub/docs/emulator#accessing_environment_variables">Está todo descrito en esta página:</a></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:image {"id":1962,"width":"766px","height":"auto","sizeSlug":"large","linkDestination":"none","className":"is-style-default"} --></p>
+<figure class="wp-block-image size-large is-resized is-style-default"><img src="{{ site.baseurl }}/assets/2023/09/image-2.png?w=664" alt="" class="wp-image-1962" style="width:766px;height:auto" /></figure>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>Pues toca abrir el conector y tocar estas cosillas. Afortunadamente para vosotros, ya lo he hecho para vosotros (al menos en el caso de un conector Kafka --&gt; PubSub) <a href="https://github.com/elbisbe/java-pubsub-group-kafka-connector-emulator">y lo tenéis disponible en este repo de GitHub.</a></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:syntaxhighlighter/code {"language":"java"} --></p>
+<pre class="wp-block-syntaxhighlighter-code">[...]
+
+ gcpCredentialsProvider = NoCredentialsProvider.create();
+
+[...]
+
+  private void createPublisher() {
+    ProjectTopicName fullTopic = ProjectTopicName.of(cpsProject, cpsTopic);
+	ManagedChannel channel = ManagedChannelBuilder.forTarget(cpsEndpoint).usePlaintext().build();
+	TransportChannelProvider channelProvider = FixedTransportChannelProvider.create(GrpcTransportChannel.create(channel));
+
+	com.google.cloud.pubsub.v1.Publisher.Builder builder =
+		Publisher.newBuilder(fullTopic)
+			.setChannelProvider(channelProvider)
+			.setCredentialsProvider(gcpCredentialsProvider);
+    try {
+      publisher = builder.build();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }</pre>
+<p><!-- /wp:syntaxhighlighter/code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Recomplilas el conector, lo pones en el Connect, reintentas y ¡voilà! Eventos de Kafka a PubSub. Afortunadamente, los problemas del emulador no los sufres en un entorno real, porque el conector se conecta sin problema a Google, suponiendo que no tengas mucho firewall dando problemas por en medio (lo cual puede ser un problemilla, ya que el conector no admite de manera nativa ningún tipo de conexión por proxy, así que te la tienes que picar a manini).</p>
+<p>Hasta aquí mi historia de hoy. Nos vemos quien sabe cuando para hablaros de otras cosas totalmente irrisorias que me asolan en el curro. <br />¡Chao! </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
