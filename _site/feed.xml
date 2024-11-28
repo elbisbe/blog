@@ -1,0 +1,189 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://localhost:4000/</id>
+  <title>mas140</title>
+  <subtitle>Investigaciones, artículos y otras historias de mi cacharrería informática</subtitle>
+  <updated>2024-11-28T21:48:37+01:00</updated>
+  <author>
+    <name>Ernesto Luis Bisbé</name>
+    <uri>http://localhost:4000/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="es"
+    href="http://localhost:4000/"/>
+  <generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator>
+  <rights> © 2024 Ernesto Luis Bisbé </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Apache Kafka + Kafka Connect + Emulador de Pub/Sub</title>
+    <link href="http://localhost:4000/2023/09/25/apache-kafka-kafka-connect-emulador-de-pub-sub/" rel="alternate" type="text/html" title="Apache Kafka + Kafka Connect + Emulador de Pub/Sub" />
+    <published>2023-09-25T11:46:08+02:00</published>
+  
+    <updated>2023-09-25T11:46:08+02:00</updated>
+  
+    <id>http://localhost:4000/2023/09/25/apache-kafka-kafka-connect-emulador-de-pub-sub/</id>
+    <content type="text/html" src="http://localhost:4000/2023/09/25/apache-kafka-kafka-connect-emulador-de-pub-sub/" />
+    <author>
+      <name>{"login"=>"elbisbe1", "email"=>"ernestoluisbisbe@gmail.com", "display_name"=>"elbisbe", "first_name"=>"Ernesto", "last_name"=>"Luis Bisbé"}</name>
+    </author>
+
+  
+    
+    <category term="Docker" />
+    
+    <category term="Kafka" />
+    
+    <category term="WSL" />
+    
+  
+
+  <summary>Uh... ¿hay alguien aquí? Bueno, al menos soy consistente (no escribiendo). Bienvenidos de vuelta a otro post donde hablo un poco de los problemas que me voy encontrando y de cómo los voy solucionando. Hoy os traigo un problema que me encontré probando una solución local para probar enviar eventos desde un bus de Kafka a un emulador de Google Pub/Sub con el mínimo dolor posible.
+Empecemos por lo...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Cómo recuperar un long de HBase y no morir en el intento</title>
+    <link href="http://localhost:4000/2021/03/13/como-recuperar-un-long-de-hbase-y-no-morir-en-el-intento/" rel="alternate" type="text/html" title="Cómo recuperar un long de HBase y no morir en el intento" />
+    <published>2021-03-13T13:44:25+01:00</published>
+  
+    <updated>2021-03-13T13:44:25+01:00</updated>
+  
+    <id>http://localhost:4000/2021/03/13/como-recuperar-un-long-de-hbase-y-no-morir-en-el-intento/</id>
+    <content type="text/html" src="http://localhost:4000/2021/03/13/como-recuperar-un-long-de-hbase-y-no-morir-en-el-intento/" />
+    <author>
+      <name>{"login"=>"elbisbe1", "email"=>"ernestoluisbisbe@gmail.com", "display_name"=>"elbisbe", "first_name"=>"Ernesto", "last_name"=>"Luis Bisbé"}</name>
+    </author>
+
+  
+    
+    <category term="HBase" />
+    
+  
+
+  <summary>¿Recordáis cuando iba a intentar ser consistente a la hora de escribir en el blog? JÁ.
+
+
+En fin, hoy os vengo a hablar de un detalle que me rompió la cabeza durante una temporada y he conseguido solucionar de manera relativamente eficaz:
+
+
+Quien haya trabajo con HBase y su shell, se habrá encontrado con los siguientes datos alguna vez:
+
+
+ROW            COLUMN+CELL
+111222333      column=FAM1:ID,...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Enlacemanía [I]</title>
+    <link href="http://localhost:4000/2021/02/13/enlacemania-i/" rel="alternate" type="text/html" title="Enlacemanía [I]" />
+    <published>2021-02-13T20:27:50+01:00</published>
+  
+    <updated>2021-02-13T20:27:50+01:00</updated>
+  
+    <id>http://localhost:4000/2021/02/13/enlacemania-i/</id>
+    <content type="text/html" src="http://localhost:4000/2021/02/13/enlacemania-i/" />
+    <author>
+      <name>{"login"=>"elbisbe1", "email"=>"ernestoluisbisbe@gmail.com", "display_name"=>"elbisbe", "first_name"=>"Ernesto", "last_name"=>"Luis Bisbé"}</name>
+    </author>
+
+  
+    
+    <category term="Enlacemanía" />
+    
+  
+
+  <summary>A ver como explico esto. 
+
+
+Por las -1 personas que todavía recuerden que mi blog existen, habrán notado que no hago un uso exhausto de él, ni se puede decir que sea la obra de literatura más extensa que se haya escrito. Llevo tiempo queriendo escribir en él, pero nunca he sabido en qué pudiera orientar distintos artículos sin tampoco meterme mucho al trapo pero intentando dar un poco de luz en...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Protip: vscode, CLRF y scripts de Bash</title>
+    <link href="http://localhost:4000/2019/11/16/protip-vscode-clrf-y-scripts-de-bash/" rel="alternate" type="text/html" title="Protip: vscode, CLRF y scripts de Bash" />
+    <published>2019-11-16T09:54:44+01:00</published>
+  
+    <updated>2019-11-16T09:54:44+01:00</updated>
+  
+    <id>http://localhost:4000/2019/11/16/protip-vscode-clrf-y-scripts-de-bash/</id>
+    <content type="text/html" src="http://localhost:4000/2019/11/16/protip-vscode-clrf-y-scripts-de-bash/" />
+    <author>
+      <name>{"login"=>"elbisbe1", "email"=>"ernestoluisbisbe@gmail.com", "display_name"=>"elbisbe", "first_name"=>"Ernesto", "last_name"=>"Luis Bisbé"}</name>
+    </author>
+
+  
+    
+    <category term="Sin categoría" />
+    
+  
+
+  <summary>¡Hola!
+
+
+¿Has intentado alguna vez hacer un export en un script de bash? ¿No te funciona?
+
+
+¿Haces &amp;quot;export&amp;quot; en el terminal y te sale algo como esto?
+
+
+$ export
+-- LO QUE SALE
+&amp;quot;eclare -x TEST1=&amp;quot;mequieropegaruntiro
+&amp;quot;eclare -x TEST2=&amp;quot;mequieropegarotrotiro
+-- LO QUE DEBERIA SALIR
+declare -x TEST1=&amp;quot;mequieropegaruntiro&amp;quot;
+declare -x TEST2=&amp;quot;mequieropegarotrotiro&amp;quot;
+
+
+ ¡No te preocupes! Soy tú 3 horas en e...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>PPWT Londres, SQLSat Madrid ‘19 y ¿ahora qué?</title>
+    <link href="http://localhost:4000/2019/10/14/ppwt-londres-sqlsat-madrid-19-y-ahora-que/" rel="alternate" type="text/html" title="PPWT Londres, SQLSat Madrid ‘19 y ¿ahora qué?" />
+    <published>2019-10-14T18:12:07+02:00</published>
+  
+    <updated>2019-10-14T18:12:07+02:00</updated>
+  
+    <id>http://localhost:4000/2019/10/14/ppwt-londres-sqlsat-madrid-19-y-ahora-que/</id>
+    <content type="text/html" src="http://localhost:4000/2019/10/14/ppwt-londres-sqlsat-madrid-19-y-ahora-que/" />
+    <author>
+      <name>{"login"=>"elbisbe1", "email"=>"ernestoluisbisbe@gmail.com", "display_name"=>"elbisbe", "first_name"=>"Ernesto", "last_name"=>"Luis Bisbé"}</name>
+    </author>
+
+  
+    
+    <category term="Sin categoría" />
+    
+  
+
+  <summary>¡Buenas!&amp;amp;nbsp;
+
+
+Como&amp;amp;nbsp;sabéis, soy un&amp;amp;nbsp;desastre&amp;amp;nbsp;manteniendo&amp;amp;nbsp;este&amp;amp;nbsp;blog y&amp;amp;nbsp;mantener&amp;amp;nbsp;un&amp;amp;nbsp;registro&amp;amp;nbsp;de lo que&amp;amp;nbsp;hago&amp;amp;nbsp;me&amp;amp;nbsp;resulta&amp;amp;nbsp;imposible,&amp;amp;nbsp;así&amp;amp;nbsp;que ¡voy&amp;amp;nbsp;a&amp;amp;nbsp;intentar&amp;amp;nbsp;ponerme&amp;amp;nbsp;un&amp;amp;nbsp;poco&amp;amp;nbsp;al&amp;amp;nbsp;día!&amp;amp;nbsp;
+
+
+Durante este verano he ido a 2 eventos como speaker: 
+
+
+Power Platform World Tour @ London, 2019&amp;amp;nbsp;
+...</summary>
+
+  </entry>
+
+</feed>
+
+
